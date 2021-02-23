@@ -7,9 +7,6 @@ import {
   Route,
 } from 'react-router-dom';
 import apolloClient from './apollo';
-import English from './English';
-import Portuguese from './Portuguese';
-import Spanish from './Spanish';
 import Home from './Home';
 
 function App() {
@@ -19,15 +16,6 @@ function App() {
         <Switch>
           <Route path="/home">
             <Home />
-          </Route>
-          <Route path="/english">
-            <English />
-          </Route>
-          <Route path="/portuguese">
-            <Portuguese />
-          </Route>
-          <Route path="/spanish">
-            <Spanish />
           </Route>
         </Switch>
       </Router>
