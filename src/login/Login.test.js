@@ -4,14 +4,6 @@ import userEvent from '@testing-library/user-event';
 import Login, { validateUser } from './Login';
 
 describe('login page', () => {
-  it('Login page loads properly', () => {
-    render(<Login />);
-    expect(screen.getByRole('heading')).toBeInTheDocument();
-    expect(screen.getByLabelText(/username/)).toBeInTheDocument();
-    expect(screen.getByLabelText(/password/)).toBeInTheDocument();
-    expect(screen.getByRole('button')).toBeInTheDocument();
-  });
-
   it('Initial state for elements', () => {
     render(<Login />);
     expect(screen.getByLabelText(/username/)).toHaveValue('');
@@ -22,28 +14,25 @@ describe('login page', () => {
   it.each([
     ['admin', 'admin', true],
     ['admin', '', false],
-  ])('.add(%i, %i)', (a, b, expected) => {
+  ])('.validateUser(%i, %i)', (username, password, expected) => {
     const spy = jest.fn();
-    validateUser(a, b, spy);
+    validateUser(username, password, spy);
     expect(spy).toHaveBeenCalledWith(expected);
   });
 
-  it('later', () => {
+  it.each([
+    ['test', 'test', false],
+    ['test', '', true],
+    ['', 'test', true],
+    ['', '', true],
+  ])('check button availability for user: %s, pass: %s', (username, password, expected) => {
     render(<Login />);
     const usernameInput = screen.getByLabelText(/username/);
-    expect(usernameInput).toHaveValue('');
-    const someInput = 'test';
-    userEvent.type(usernameInput, someInput);
-    expect(usernameInput).toHaveValue(someInput);
-  });
-
-  it('later2', () => {
-    render(<Login />);
     const passwordInput = screen.getByLabelText(/password/);
-    expect(passwordInput).toHaveValue('');
-    const someInput = 'test';
-    userEvent.type(passwordInput, someInput);
-    expect(passwordInput).toHaveValue(someInput);
+    const loginBtn = screen.getByRole('button');
+    userEvent.type(usernameInput, username);
+    userEvent.type(passwordInput, password);
+    expect(loginBtn.hasAttribute('disabled')).toEqual(expected);
   });
 
   it('check login button', async () => {
@@ -54,16 +43,17 @@ describe('login page', () => {
     const loginBtn = screen.getByRole('button');
     const wrongInput = 'test';
     window.alert = jest.fn();
+    const spy = jest.spyOn(window, 'alert');
     userEvent.type(usernameInput, wrongInput);
     userEvent.type(passwordInput, wrongInput);
     userEvent.click(loginBtn);
-    expect(window.alert).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith('Login Failed');
     userEvent.clear(usernameInput);
     userEvent.clear(passwordInput);
     const correctInput = 'admin';
     userEvent.type(usernameInput, correctInput);
     userEvent.type(passwordInput, correctInput);
     userEvent.click(loginBtn);
-    expect(window.alert).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith('Hooray! You just logged in');
   });
 });
