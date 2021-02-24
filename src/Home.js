@@ -7,13 +7,7 @@ function Home() {
       <nav>
         <ul>
           <li>
-            <Link to="/english">English</Link>
-          </li>
-          <li>
-            <Link to="/spanish">Spanish</Link>
-          </li>
-          <li>
-            <Link to="/portuguese">Portuguese</Link>
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       </nav>
