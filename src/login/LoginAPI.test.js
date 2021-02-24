@@ -1,4 +1,3 @@
-import React from 'react';
 import { mockLoginUser } from './LoginAPI';
 
 describe('testing API calls', () => {
