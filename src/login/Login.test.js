@@ -42,8 +42,7 @@ describe('login page', () => {
     const passwordInput = screen.getByLabelText(/password/);
     const loginBtn = screen.getByRole('button');
     const wrongInput = 'test';
-    window.alert = jest.fn();
-    const spy = jest.spyOn(window, 'alert');
+    const spy = jest.spyOn(window, 'alert').mockImplementation();
     userEvent.type(usernameInput, wrongInput);
     userEvent.type(passwordInput, wrongInput);
     userEvent.click(loginBtn);
