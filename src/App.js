@@ -9,7 +9,8 @@ import {
 } from 'react-router-dom';
 import apolloClient from './apollo';
 import Home from './Home';
-import Login from './login/Login';
+import LandingPage from './login/LandingPage';
+import RegisterPage from './register/RegisterPage';
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            <LandingPage />
+          </Route>
+          <Route path="/register">
+            <RegisterPage />
           </Route>
           <Route path="/">
             <Redirect to="/home" />

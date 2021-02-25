@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Login, { validateUser } from './Login';
+import LoginForm, { validateUser } from './LoginForm';
 
 describe('login page', () => {
   it('Initial state for elements', () => {
-    render(<Login />);
+    render(<LoginForm />);
     expect(screen.getByLabelText(/username/)).toHaveValue('');
     expect(screen.getByLabelText(/password/)).toHaveValue('');
     expect(screen.getByRole('button')).toBeDisabled();
@@ -26,7 +26,7 @@ describe('login page', () => {
     ['', 'test', true],
     ['', '', true],
   ])('check button availability for user: %s, pass: %s', (username, password, expected) => {
-    render(<Login />);
+    render(<LoginForm />);
     const usernameInput = screen.getByLabelText(/username/);
     const passwordInput = screen.getByLabelText(/password/);
     const loginBtn = screen.getByRole('button');
@@ -36,7 +36,7 @@ describe('login page', () => {
   });
 
   it('check login button', async () => {
-    render(<Login />);
+    render(<LoginForm />);
 
     const usernameInput = screen.getByLabelText(/username/);
     const passwordInput = screen.getByLabelText(/password/);
