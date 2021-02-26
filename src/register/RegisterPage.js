@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 import RegisterForm from './RegisterForm';
 
 function RegisterPage() {
   return (
-    <>
+    <Grid container alignItems="center" direction="column">
       <h1>Register Form</h1>
       <RegisterForm />
       <p>
@@ -13,7 +14,7 @@ function RegisterPage() {
           Login Now
         </Link>
       </p>
-    </>
+    </Grid>
   );
 }
 

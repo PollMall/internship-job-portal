@@ -6,8 +6,8 @@ import LoginForm, { validateUser } from './LoginForm';
 describe('login page', () => {
   it('Initial state for elements', () => {
     render(<LoginForm />);
-    expect(screen.getByLabelText(/username/)).toHaveValue('');
-    expect(screen.getByLabelText(/password/)).toHaveValue('');
+    expect(screen.getByLabelText(/Username/)).toHaveValue('');
+    expect(screen.getByLabelText(/Password/)).toHaveValue('');
     expect(screen.getByRole('button')).toBeDisabled();
   });
 
@@ -27,8 +27,8 @@ describe('login page', () => {
     ['', '', true],
   ])('check button availability for user: %s, pass: %s', (username, password, expected) => {
     render(<LoginForm />);
-    const usernameInput = screen.getByLabelText(/username/);
-    const passwordInput = screen.getByLabelText(/password/);
+    const usernameInput = screen.getByLabelText(/Username/);
+    const passwordInput = screen.getByLabelText(/Password/);
     const loginBtn = screen.getByRole('button');
     userEvent.type(usernameInput, username);
     userEvent.type(passwordInput, password);
@@ -38,8 +38,8 @@ describe('login page', () => {
   it('check login button', async () => {
     render(<LoginForm />);
 
-    const usernameInput = screen.getByLabelText(/username/);
-    const passwordInput = screen.getByLabelText(/password/);
+    const usernameInput = screen.getByLabelText(/Username/);
+    const passwordInput = screen.getByLabelText(/Password/);
     const loginBtn = screen.getByRole('button');
     const wrongInput = 'test';
     const spy = jest.spyOn(window, 'alert').mockImplementation();

@@ -1,25 +1,23 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import {
-  Form, Input, Button,
-} from 'antd';
 import { useHistory } from 'react-router-dom';
+import { Button, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { mockRegisterUser } from './RegisterAPI';
 
 export const validateRegisterUser = (username, firstName, lastName, password, callback) => {
   callback(!!(username && firstName && lastName && password));
 };
 
-const layout = {
-  labelCol: { span: 2 },
-  wrapperCol: { span: 4 },
-};
-
-const buttonLayout = {
-  wrapperCol: { span: 4, offset: 2 },
-};
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 function RegisterForm() {
+  const classes = useStyles();
   const [username, setUsername] = React.useState('');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
@@ -41,61 +39,48 @@ function RegisterForm() {
   return (
     <>
       <p>Please provide your personal information</p>
-      <Form {...layout}>
-        <Form.Item
+      <form className={classes.root}>
+        <TextField
           label="Username"
           name="username"
-          rules={[
-            {
-              required: true,
-              message: 'Please enter your username!',
-            },
-          ]}
-        >
-          <Input onChange={(e) => setUsername(e.target.value)} />
-        </Form.Item>
-        <Form.Item
+          id="username"
+          error={!username}
+          required
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <br />
+        <TextField
           label="First Name"
           name="firstName"
-          rules={[
-            {
-              required: true,
-              message: 'Please enter your first name!',
-            },
-          ]}
-        >
-          <Input onChange={(e) => setFirstName(e.target.value)} />
-        </Form.Item>
-        <Form.Item
+          id="firstname"
+          error={!firstName}
+          required
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <br />
+        <TextField
           label="Last Name"
           name="lastName"
-          rules={[
-            {
-              required: true,
-              message: 'Please enter your last name!',
-            },
-          ]}
-        >
-          <Input onChange={(e) => setLastName(e.target.value)} />
-        </Form.Item>
-        <Form.Item
+          id="lastname"
+          error={!lastName}
+          required
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <br />
+        <TextField
           label="Password"
           name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please enter your password!',
-            },
-          ]}
-        >
-          <Input.Password onChange={(e) => setPassword(e.target.value)} />
-        </Form.Item>
-        <Form.Item {...buttonLayout}>
-          <Button disabled={!valid} block onClick={registerUser}>
-            Register
-          </Button>
-        </Form.Item>
-      </Form>
+          id="password"
+          error={!password}
+          required
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br />
+        <Button variant="contained" color="primary" disabled={!valid} onClick={registerUser}>
+          Register
+        </Button>
+      </form>
     </>
   );
 }

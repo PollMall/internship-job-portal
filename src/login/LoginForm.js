@@ -1,11 +1,20 @@
 import React from 'react';
-import { Button } from 'antd';
-import 'antd/dist/antd.css';
+import { Button, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { mockLoginUser } from './LoginAPI';
 
 export const validateUser = (username, password, callback) => (callback(!!(username && password)));
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
 function LoginForm() {
+  const classes = useStyles();
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [valid, setValid] = React.useState(false);
@@ -24,34 +33,23 @@ function LoginForm() {
   });
 
   return (
-    <form>
-      <label htmlFor="username">
-        Enter your username:
-        <br />
-        <input
-          type="text"
-          id="username"
-          name="username"
-          required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
+    <form className={classes.root}>
+      <TextField
+        label="Username"
+        name="username"
+        id="username"
+        onChange={(e) => setUsername(e.target.value)}
+      />
       <br />
-      <label htmlFor="password">
-        Enter your password:
-        <br />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
+      <TextField
+        label="Password"
+        name="password"
+        id="password"
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <br />
-      <Button type="primary" disabled={!valid} onClick={loginUser}>
+      <Button variant="contained" color="primary" disabled={!valid} onClick={loginUser}>
         Login
       </Button>
     </form>
