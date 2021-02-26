@@ -1,56 +1,172 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RegisterPage test should match snapshot 1`] = `
-Object {
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "logTestingPlaygroundURL": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-}
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
+  >
+    <h1>
+      Register Form
+    </h1>
+    <p>
+      Please provide your personal information
+    </p>
+    <form
+      class="makeStyles-root-1"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          data-shrink="false"
+          for="username"
+          id="username-label"
+        >
+          Username
+          <span
+            aria-hidden="true"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+          >
+             
+            *
+          </span>
+        </label>
+        <div
+          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+        >
+          <input
+            aria-invalid="true"
+            class="MuiInputBase-input MuiInput-input"
+            id="username"
+            name="username"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <br />
+      <div
+        class="MuiFormControl-root MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          data-shrink="false"
+          for="firstname"
+          id="firstname-label"
+        >
+          First Name
+          <span
+            aria-hidden="true"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+          >
+             
+            *
+          </span>
+        </label>
+        <div
+          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+        >
+          <input
+            aria-invalid="true"
+            class="MuiInputBase-input MuiInput-input"
+            id="firstname"
+            name="firstName"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <br />
+      <div
+        class="MuiFormControl-root MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          data-shrink="false"
+          for="lastname"
+          id="lastname-label"
+        >
+          Last Name
+          <span
+            aria-hidden="true"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+          >
+             
+            *
+          </span>
+        </label>
+        <div
+          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+        >
+          <input
+            aria-invalid="true"
+            class="MuiInputBase-input MuiInput-input"
+            id="lastname"
+            name="lastName"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <br />
+      <div
+        class="MuiFormControl-root MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          data-shrink="false"
+          for="password"
+          id="password-label"
+        >
+          Password
+          <span
+            aria-hidden="true"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+          >
+             
+            *
+          </span>
+        </label>
+        <div
+          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+        >
+          <input
+            aria-invalid="true"
+            class="MuiInputBase-input MuiInput-input"
+            id="password"
+            name="password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
+      </div>
+      <br />
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary Mui-disabled Mui-disabled"
+        disabled=""
+        tabindex="-1"
+        type="button"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Register
+        </span>
+      </button>
+    </form>
+    <p>
+      Already have an account?
+      <a
+        href="/login"
+      >
+        Login Now
+      </a>
+    </p>
+  </div>
+</div>
 `;

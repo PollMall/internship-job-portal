@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { screen, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import RegisterPage from './RegisterPage';
 
 describe('RegisterPage test', () => {
@@ -15,7 +15,7 @@ describe('RegisterPage test', () => {
   });
 
   it('should match snapshot', () => {
-    render(<RegisterPage />, { wrapper: MemoryRouter });
-    expect(screen).toMatchSnapshot();
+    const { container } = render(<RegisterPage />, { wrapper: MemoryRouter });
+    expect(container).toMatchSnapshot();
   });
 });

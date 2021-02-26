@@ -15,10 +15,6 @@ describe('RegisterForm testing', () => {
     });
   });
 
-  it('initial state of form', () => {
-
-  });
-
   it('register btn', () => {
     render(<RegisterForm />, { wrapper: MemoryRouter });
     const input = 'text';
@@ -28,7 +24,6 @@ describe('RegisterForm testing', () => {
     const passInput = screen.getByLabelText(/Password/);
     const registerBtn = screen.getByRole('button');
     const spy = jest.spyOn(window, 'alert').mockImplementation();
-    // const history = { push: jest.fn() };
     userEvent.type(usernameInput, input);
     userEvent.type(firstInput, input);
     userEvent.type(lastInput, input);
