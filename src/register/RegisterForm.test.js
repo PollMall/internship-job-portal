@@ -5,18 +5,9 @@ import { MemoryRouter } from 'react-router-dom';
 import RegisterForm from './RegisterForm';
 
 describe('RegisterForm testing', () => {
-  beforeAll(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      value: () => ({
-        matches: false,
-        addListener: () => {},
-        removeListener: () => {},
-      }),
-    });
-  });
-
   it('register btn', () => {
     render(<RegisterForm />, { wrapper: MemoryRouter });
+
     const input = 'text';
     const usernameInput = screen.getByLabelText(/Username/);
     const firstInput = screen.getByLabelText(/First Name/);
