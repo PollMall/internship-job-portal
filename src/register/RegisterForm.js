@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useMutation } from '@apollo/client';
 import Alert from '@material-ui/lab/Alert';
 import { CREATE_USER } from '../queries/UserQueries';
-
 export const validateRegisterUser = (username, firstName, lastName, password, callback) => {
   callback(!!(username && firstName && lastName && password));
 };
@@ -31,6 +30,7 @@ function RegisterForm() {
     error, loading, data, called,
   }] = useMutation(CREATE_USER);
 
+
   React.useEffect(() => {
     validateRegisterUser(username, firstName, lastName, password, setValid);
   }, [username, firstName, lastName, password]);
@@ -51,6 +51,7 @@ function RegisterForm() {
       },
     });
   }, [username, firstName, lastName, password]);
+
 
   return (
     <>
