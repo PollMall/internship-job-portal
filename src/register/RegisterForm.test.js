@@ -1,12 +1,12 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { render } from '../setupTests';
 import RegisterForm from './RegisterForm';
 
 describe('RegisterForm testing', () => {
-  it('register btn', () => {
-    render(<RegisterForm />, { wrapper: MemoryRouter });
+  it('register btn', async () => {
+    render(<RegisterForm />);
 
     const input = 'text';
     const usernameInput = screen.getByLabelText(/Username/);
@@ -14,13 +14,14 @@ describe('RegisterForm testing', () => {
     const lastInput = screen.getByLabelText(/Last Name/);
     const passInput = screen.getByLabelText(/Password/);
     const registerBtn = screen.getByRole('button');
-    const spy = jest.spyOn(window, 'alert').mockImplementation();
+
     userEvent.type(usernameInput, input);
     userEvent.type(firstInput, input);
     userEvent.type(lastInput, input);
     userEvent.type(passInput, input);
     userEvent.click(registerBtn);
-    expect(spy).toHaveBeenCalledWith('Hooray! You just registered');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(await screen.findByTestId('register--success-alert')).toBeInTheDocument();
   });
 
   it.each([
@@ -31,7 +32,7 @@ describe('RegisterForm testing', () => {
     ['test', 'test', 'test', '', true],
     ['', 'test', '', 'test', true],
     ['', '', '', '', true],
-  ])('username: %s, firstName: %s, lastName: %s, password: %s', (username, first, last, pass, expected) => {
+  ])('check btn disabled for username: %s, firstName: %s, lastName: %s, password: %s', (username, first, last, pass, expected) => {
     render(<RegisterForm />);
     const usernameInput = screen.getByLabelText(/Username/);
     const firstInput = screen.getByLabelText(/First Name/);

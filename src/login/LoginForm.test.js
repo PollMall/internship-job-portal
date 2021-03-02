@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { render } from '../setupTests';
 import LoginForm, { validateUser } from './LoginForm';
 
 describe('login page', () => {
@@ -14,7 +15,7 @@ describe('login page', () => {
   it.each([
     ['admin', 'admin', true],
     ['admin', '', false],
-  ])('.validateUser(%i, %i)', (username, password, expected) => {
+  ])('.validateUser(%s, %s)', (username, password, expected) => {
     const spy = jest.fn();
     validateUser(username, password, spy);
     expect(spy).toHaveBeenCalledWith(expected);
@@ -41,18 +42,22 @@ describe('login page', () => {
     const usernameInput = screen.getByLabelText(/Username/);
     const passwordInput = screen.getByLabelText(/Password/);
     const loginBtn = screen.getByRole('button');
+
     const wrongInput = 'test';
-    const spy = jest.spyOn(window, 'alert').mockImplementation();
     userEvent.type(usernameInput, wrongInput);
     userEvent.type(passwordInput, wrongInput);
     userEvent.click(loginBtn);
-    expect(spy).toHaveBeenCalledWith('Login Failed');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(await screen.findByTestId('login--info-alert')).toBeInTheDocument();
+
+    const correctUsernameInput = 'User';
+    const correctPasswordInput = 'UXdlcnR5MTIz';
     userEvent.clear(usernameInput);
     userEvent.clear(passwordInput);
-    const correctInput = 'admin';
-    userEvent.type(usernameInput, correctInput);
-    userEvent.type(passwordInput, correctInput);
+    userEvent.type(usernameInput, correctUsernameInput);
+    userEvent.type(passwordInput, correctPasswordInput);
     userEvent.click(loginBtn);
-    expect(spy).toHaveBeenCalledWith('Hooray! You just logged in');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(await screen.findByTestId('login--success-alert')).toBeInTheDocument();
   });
 });
