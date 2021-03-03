@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNotFound test should match snapshot 1`] = `
+<div>
+  <div
+    class="display-flex"
+  >
+    <h1
+      class="text-center"
+    >
+      Page Not Found
+    </h1>
+    <p
+      class="text-center"
+    >
+      It looks like you're lost. There is nothing here.
+    </p>
+    <a
+      class="center-block text-center"
+      data-testid="page-not-found-link"
+      href="/"
+    >
+      Go back to main page.
+    </a>
+  </div>
+</div>
+`;

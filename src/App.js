@@ -11,23 +11,27 @@ import apolloClient from './apollo';
 import Home from './Home';
 import LandingPage from './login/LandingPage';
 import RegisterPage from './register/RegisterPage';
+import PageNotFound from './404page/PageNotFound';
 
 function App() {
   return (
     <ApolloProvider client={apolloClient}>
       <Router>
         <Switch>
-          <Route path="/home">
+          <Route path="/home" exact>
             <Home />
           </Route>
-          <Route path="/login">
+          <Route path="/login" exact>
             <LandingPage />
           </Route>
-          <Route path="/register">
+          <Route path="/register" exact>
             <RegisterPage />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <Redirect to="/home" />
+          </Route>
+          <Route>
+            <PageNotFound />
           </Route>
         </Switch>
       </Router>
