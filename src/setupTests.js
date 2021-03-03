@@ -6,41 +6,23 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import { render } from '@testing-library/react';
-import { mockApolloData } from './queries/MockApolloData';
 
-Object.defineProperty(window, 'matchMedia', {
-  value: () => ({
-    matches: false,
-    addListener: () => {},
-    removeListener: () => {},
-  }),
+Object.defineProperties(window, {
+  matchMedia: {
+    value: () => ({
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
+    }),
+  },
+  alert: {
+    value: jest.fn()
+  }
 });
 
-Object.defineProperty(window, 'alert', {
-  value: jest.fn()
-})
-
-function makeMockApolloCalls(props) {
-  return props.map((p) => {
-    const { query, variables, data} = p;
-    console.log(data);
-    return {
-      request: {
-        query,
-        variables: variables || {}
-      },
-      result: {
-        data: data || {}
-      }
-    }
-  })
-}
-
-const mockApolloCalls = makeMockApolloCalls(mockApolloData);
-
-const AllProviders = ({ children }) => {
+const AllProviders = ({ mocks, children }) => {
   return (
-    <MockedProvider mocks={mockApolloCalls} addTypename={false}>
+    <MockedProvider mocks={mocks} addTypename={false}>
        <MemoryRouter>
          {children}
        </MemoryRouter>
@@ -48,8 +30,12 @@ const AllProviders = ({ children }) => {
   )
 }
 
-const customRender = (ui, options) =>
-  render(ui, { wrapper: AllProviders, ...options })
-
+const customRender = (ui, mocks) => {
+  return render(
+    <AllProviders mocks={mocks || []}>
+      {ui}
+    </AllProviders>
+  )
+}
 
 export { customRender as render };

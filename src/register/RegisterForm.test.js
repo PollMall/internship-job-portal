@@ -3,12 +3,29 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../setupTests';
 import RegisterForm from './RegisterForm';
+import { CREATE_USER } from '../queries/UserQueries';
+import { mockResponseType, makeMock } from '../queries/MockApollo';
 
 describe('RegisterForm testing', () => {
-  it('register btn', async () => {
-    render(<RegisterForm />);
-
+  it('should alert with success', async () => {
     const input = 'text';
+    const mockData = {
+      query: CREATE_USER,
+      variables: {
+        username: input, firstName: input, lastName: input, password: input, userRoleId: 3,
+      },
+      response: {
+        createUser: {
+          username: input,
+          firstName: input,
+          lastName: input,
+          password: input,
+        },
+      },
+    };
+
+    render(<RegisterForm />, [makeMock(mockData, mockResponseType.SUCCESS)]);
+
     const usernameInput = screen.getByLabelText(/Username/);
     const firstInput = screen.getByLabelText(/First Name/);
     const lastInput = screen.getByLabelText(/Last Name/);
@@ -20,7 +37,6 @@ describe('RegisterForm testing', () => {
     userEvent.type(lastInput, input);
     userEvent.type(passInput, input);
     userEvent.click(registerBtn);
-    await new Promise((resolve) => setTimeout(resolve, 0));
     expect(await screen.findByTestId('register--success-alert')).toBeInTheDocument();
   });
 
