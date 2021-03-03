@@ -1,7 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { render } from '../setupTests';
 import LoginForm, { validateUser } from './LoginForm';
+import { GET_USERS } from '../queries/UserQueries';
+import { mockResponseType, makeMock } from '../queries/MockApollo';
 
 describe('login page', () => {
   it('Initial state for elements', () => {
@@ -14,7 +17,7 @@ describe('login page', () => {
   it.each([
     ['admin', 'admin', true],
     ['admin', '', false],
-  ])('.validateUser(%i, %i)', (username, password, expected) => {
+  ])('.validateUser(%s, %s)', (username, password, expected) => {
     const spy = jest.fn();
     validateUser(username, password, spy);
     expect(spy).toHaveBeenCalledWith(expected);
@@ -35,24 +38,80 @@ describe('login page', () => {
     expect(loginBtn.hasAttribute('disabled')).toEqual(expected);
   });
 
-  it('check login button', async () => {
-    render(<LoginForm />);
+  it('should alert with info', async () => {
+    const mockData = {
+      query: GET_USERS,
+      variables: {},
+      response: {
+        users: [
+          {
+            id: 1,
+            username: 'admin',
+            password: 'admin',
+          },
+        ],
+      },
+    };
+    const wrongInput = 'test';
 
+    render(<LoginForm />, [makeMock(mockData, mockResponseType.SUCCESS)]);
     const usernameInput = screen.getByLabelText(/Username/);
     const passwordInput = screen.getByLabelText(/Password/);
     const loginBtn = screen.getByRole('button');
-    const wrongInput = 'test';
-    const spy = jest.spyOn(window, 'alert').mockImplementation();
+
     userEvent.type(usernameInput, wrongInput);
     userEvent.type(passwordInput, wrongInput);
     userEvent.click(loginBtn);
-    expect(spy).toHaveBeenCalledWith('Login Failed');
-    userEvent.clear(usernameInput);
-    userEvent.clear(passwordInput);
-    const correctInput = 'admin';
-    userEvent.type(usernameInput, correctInput);
-    userEvent.type(passwordInput, correctInput);
+    expect(await screen.findByTestId('login--info-alert')).toBeInTheDocument();
+  });
+
+  it('should alert with success', async () => {
+    const correctUsernameInput = 'User';
+    const correctPasswordInput = 'UXdlcnR5MTIz';
+    const mockData = {
+      query: GET_USERS,
+      variables: {},
+      response: {
+        users: [
+          {
+            id: 1,
+            username: correctUsernameInput,
+            password: correctPasswordInput,
+          },
+        ],
+      },
+    };
+
+    render(<LoginForm />, [makeMock(mockData, mockResponseType.SUCCESS)]);
+    const usernameInput = screen.getByLabelText(/Username/);
+    const passwordInput = screen.getByLabelText(/Password/);
+    const loginBtn = screen.getByRole('button');
+
+    userEvent.type(usernameInput, correctUsernameInput);
+    userEvent.type(passwordInput, correctPasswordInput);
     userEvent.click(loginBtn);
-    expect(spy).toHaveBeenCalledWith('Hooray! You just logged in');
+    expect(await screen.findByTestId('login--success-alert')).toBeInTheDocument();
+  });
+
+  it('should alert with error', async () => {
+    const usernameInputText = 'user';
+    const passwordInputText = 'user';
+    const mockData = {
+      query: GET_USERS,
+      variables: {},
+      response: {
+        error: 'An error occured!',
+      },
+    };
+
+    render(<LoginForm />, [makeMock(mockData, mockResponseType.ERROR)]);
+    const usernameInput = screen.getByLabelText(/Username/);
+    const passwordInput = screen.getByLabelText(/Password/);
+    const loginBtn = screen.getByRole('button');
+
+    userEvent.type(usernameInput, usernameInputText);
+    userEvent.type(passwordInput, passwordInputText);
+    userEvent.click(loginBtn);
+    expect(await screen.findByTestId('login--error-alert')).toBeInTheDocument();
   });
 });

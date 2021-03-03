@@ -1,26 +1,43 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { render } from '../setupTests';
 import RegisterForm from './RegisterForm';
+import { CREATE_USER } from '../queries/UserQueries';
+import { mockResponseType, makeMock } from '../queries/MockApollo';
 
 describe('RegisterForm testing', () => {
-  it('register btn', () => {
-    render(<RegisterForm />, { wrapper: MemoryRouter });
-
+  it('should alert with success', async () => {
     const input = 'text';
+    const mockData = {
+      query: CREATE_USER,
+      variables: {
+        username: input, firstName: input, lastName: input, password: input, userRoleId: 3,
+      },
+      response: {
+        createUser: {
+          username: input,
+          firstName: input,
+          lastName: input,
+          password: input,
+        },
+      },
+    };
+
+    render(<RegisterForm />, [makeMock(mockData, mockResponseType.SUCCESS)]);
+
     const usernameInput = screen.getByLabelText(/Username/);
     const firstInput = screen.getByLabelText(/First Name/);
     const lastInput = screen.getByLabelText(/Last Name/);
     const passInput = screen.getByLabelText(/Password/);
     const registerBtn = screen.getByRole('button');
-    const spy = jest.spyOn(window, 'alert').mockImplementation();
+
     userEvent.type(usernameInput, input);
     userEvent.type(firstInput, input);
     userEvent.type(lastInput, input);
     userEvent.type(passInput, input);
     userEvent.click(registerBtn);
-    expect(spy).toHaveBeenCalledWith('Hooray! You just registered');
+    expect(await screen.findByTestId('register--success-alert')).toBeInTheDocument();
   });
 
   it.each([
@@ -31,7 +48,7 @@ describe('RegisterForm testing', () => {
     ['test', 'test', 'test', '', true],
     ['', 'test', '', 'test', true],
     ['', '', '', '', true],
-  ])('username: %s, firstName: %s, lastName: %s, password: %s', (username, first, last, pass, expected) => {
+  ])('check btn disabled for username: %s, firstName: %s, lastName: %s, password: %s', (username, first, last, pass, expected) => {
     render(<RegisterForm />);
     const usernameInput = screen.getByLabelText(/Username/);
     const firstInput = screen.getByLabelText(/First Name/);

@@ -1,8 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Button, TextField } from '@material-ui/core';
+import {
+  Button, TextField, Backdrop, CircularProgress, Snackbar,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { mockRegisterUser } from './RegisterAPI';
+// import { useRegister } from './RegisterAPI';
+import { useMutation } from '@apollo/client';
+import Alert from '@material-ui/lab/Alert';
+import { CREATE_USER } from '../queries/UserQueries';
 
 export const validateRegisterUser = (username, firstName, lastName, password, callback) => {
   callback(!!(username && firstName && lastName && password));
@@ -23,24 +27,37 @@ function RegisterForm() {
   const [lastName, setLastName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [valid, setValid] = React.useState(false);
-  const history = useHistory();
+  const [register, {
+    error, loading, data, called,
+  }] = useMutation(CREATE_USER);
 
   React.useEffect(() => {
     validateRegisterUser(username, firstName, lastName, password, setValid);
   }, [username, firstName, lastName, password]);
-  const registerUser = React.useCallback(() => {
-    const res = mockRegisterUser();
-    if (res.success) {
-      alert('Hooray! You just registered');
-      history.push('/home');
+
+  React.useEffect(() => {
+    if (!error) {
+      setUsername('');
+      setFirstName('');
+      setLastName('');
+      setPassword('');
     }
-  }, []);
+  }, [data]);
+
+  const registerUser = React.useCallback(async () => {
+    await register({
+      variables: {
+        username, firstName, lastName, password, userRoleId: 3,
+      },
+    });
+  }, [username, firstName, lastName, password]);
 
   return (
     <>
       <p>Please provide your personal information</p>
       <form className={classes.root}>
         <TextField
+          value={username}
           label="Username"
           name="username"
           id="username"
@@ -50,6 +67,7 @@ function RegisterForm() {
         />
         <br />
         <TextField
+          value={firstName}
           label="First Name"
           name="firstName"
           id="firstname"
@@ -59,6 +77,7 @@ function RegisterForm() {
         />
         <br />
         <TextField
+          value={lastName}
           label="Last Name"
           name="lastName"
           id="lastname"
@@ -68,6 +87,7 @@ function RegisterForm() {
         />
         <br />
         <TextField
+          value={password}
           label="Password"
           name="password"
           id="password"
@@ -81,6 +101,19 @@ function RegisterForm() {
           Register
         </Button>
       </form>
+      <Backdrop open={loading} className={classes.backdrop}>
+        <CircularProgress color="primary" />
+      </Backdrop>
+      <Snackbar data-testid="register--success-alert" open={called && !!data}>
+        <Alert severity="success">
+          You&apos;re registered!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={!!error}>
+        <Alert severity="error">
+          An error occured!
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -1,11 +1,10 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render } from '../setupTests';
 import RegisterPage from './RegisterPage';
 
 describe('RegisterPage test', () => {
   it('should match snapshot', () => {
-    const { container } = render(<RegisterPage />, { wrapper: MemoryRouter });
+    const { container } = render(<RegisterPage />);
     expect(container).toMatchSnapshot();
   });
 });
