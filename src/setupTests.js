@@ -6,6 +6,7 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import { render } from '@testing-library/react';
+import UserProvider from './UserProvider';
 
 Object.defineProperties(window, {
   matchMedia: {
@@ -20,19 +21,21 @@ Object.defineProperties(window, {
   }
 });
 
-const AllProviders = ({ mocks, children }) => {
+const AllProviders = ({ mocks, initialValue, children }) => {
   return (
     <MockedProvider mocks={mocks} addTypename={false}>
-       <MemoryRouter>
-         {children}
-       </MemoryRouter>
+      <UserProvider initialValue={initialValue}>
+        <MemoryRouter>
+          {children}
+        </MemoryRouter>
+      </UserProvider>
      </MockedProvider>
   )
 }
 
-const customRender = (ui, mocks) => {
+const customRender = (ui, mocks, initialValue) => {
   return render(
-    <AllProviders mocks={mocks || []}>
+    <AllProviders mocks={mocks || []} initialValue={initialValue}>
       {ui}
     </AllProviders>
   )

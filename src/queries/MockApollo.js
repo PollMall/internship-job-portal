@@ -28,6 +28,6 @@ export const makeMock = (mockData, type) => {
         error: response,
       };
     default:
-      return {};
+      return new Error('Mock response not supported');
   }
 };

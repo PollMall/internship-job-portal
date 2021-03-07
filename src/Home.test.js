@@ -1,11 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { render } from './setupTests';
 import Home from './Home';
 
 test('renders the route menu', () => {
   render(<Router><Home /></Router>);
-  // expect(screen.getByText('English')).toBeInTheDocument();
-  // expect(screen.getByText('Portuguese')).toBeInTheDocument();
-  // expect(screen.getByText('Spanish')).toBeInTheDocument();
 });
