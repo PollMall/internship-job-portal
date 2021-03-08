@@ -3,7 +3,6 @@ import {
   Button, TextField, Backdrop, CircularProgress, Snackbar,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import { useRegister } from './RegisterAPI';
 import { useMutation } from '@apollo/client';
 import Alert from '@material-ui/lab/Alert';
 import { CREATE_USER } from '../queries/UserQueries';

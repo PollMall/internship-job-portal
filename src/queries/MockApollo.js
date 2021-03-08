@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 export const mockResponseType = {
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR',

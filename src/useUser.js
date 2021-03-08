@@ -1,6 +1,5 @@
 import { useReducer } from 'react';
 
-// ENUM !!!!
 export const userAction = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useContext } from 'react';
 import {
   Button, Snackbar, TextField, Backdrop, CircularProgress,
