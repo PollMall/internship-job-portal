@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../setupTests';
 import LoginForm, { validateUser } from './LoginForm';
@@ -65,34 +65,6 @@ describe('login page', () => {
     expect(await screen.findByTestId('login--info-alert')).toBeInTheDocument();
   });
 
-  it('should alert with success', async () => {
-    const correctUsernameInput = 'User';
-    const correctPasswordInput = 'UXdlcnR5MTIz';
-    const mockData = {
-      query: GET_USERS,
-      variables: {},
-      response: {
-        users: [
-          {
-            id: 1,
-            username: correctUsernameInput,
-            password: correctPasswordInput,
-          },
-        ],
-      },
-    };
-
-    render(<LoginForm />, [makeMock(mockData, mockResponseType.SUCCESS)]);
-    const usernameInput = screen.getByLabelText(/Username/);
-    const passwordInput = screen.getByLabelText(/Password/);
-    const loginBtn = screen.getByRole('button');
-
-    userEvent.type(usernameInput, correctUsernameInput);
-    userEvent.type(passwordInput, correctPasswordInput);
-    userEvent.click(loginBtn);
-    expect(await screen.findByTestId('login--success-alert')).toBeInTheDocument();
-  });
-
   it('should alert with error', async () => {
     const usernameInputText = 'user';
     const passwordInputText = 'user';
@@ -113,5 +85,35 @@ describe('login page', () => {
     userEvent.type(passwordInput, passwordInputText);
     userEvent.click(loginBtn);
     expect(await screen.findByTestId('login--error-alert')).toBeInTheDocument();
+  });
+
+  it('should alert with success', async () => {
+    const correctUsernameInput = 'user';
+    const correctPasswordInput = 'user';
+    const mockData = {
+      query: GET_USERS,
+      variables: {},
+      response: {
+        users: [
+          {
+            id: 1,
+            username: correctUsernameInput,
+            password: correctPasswordInput,
+          },
+        ],
+      },
+    };
+
+    const { container } = render(<LoginForm />, [makeMock(mockData, mockResponseType.SUCCESS)]);
+    const usernameInput = screen.getByLabelText(/Username/);
+    const passwordInput = screen.getByLabelText(/Password/);
+    const loginBtn = screen.getByRole('button');
+
+    userEvent.type(usernameInput, correctUsernameInput);
+    userEvent.type(passwordInput, correctPasswordInput);
+    userEvent.click(loginBtn);
+    await waitFor(() => {
+      expect(container.querySelector('div')).toBeInTheDocument();
+    });
   });
 });
