@@ -18,8 +18,6 @@ import NavBar from './NavBar';
 import PrivateRoute from './PrivateRoute';
 
 function App() {
-  // const user = null;
-
   return (
     <ApolloProvider client={apolloClient}>
       <UserProvider>
