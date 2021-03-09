@@ -11,12 +11,12 @@ describe('PrivateRoute tests', () => {
   }
 
   it('should display given component', () => {
-    render(<RedirectLoggedInRoute component={MockComponent} />);
+    render(<RedirectLoggedInRoute component={MockComponent} to="/" />);
     expect(screen.getByText(/login/i)).toBeInTheDocument();
   });
 
   it('should redirect', () => {
-    const { container } = render(<RedirectLoggedInRoute component={MockComponent} />,
+    const { container } = render(<RedirectLoggedInRoute component={MockComponent} to="/" />,
       undefined,
       { user: { id: 1, username: 'user', password: 'user' } });
     expect(container).toMatchInlineSnapshot('<div />');

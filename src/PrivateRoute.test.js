@@ -11,14 +11,14 @@ describe('PrivateRoute tests', () => {
   }
 
   it('should display given component', () => {
-    render(<PrivateRoute component={MockComponent} />,
+    render(<PrivateRoute component={MockComponent} to="/" />,
       undefined,
       { user: { id: 1, username: 'user', password: 'user' } });
     expect(screen.getByText(/mock/i)).toBeInTheDocument();
   });
 
   it('should redirect', () => {
-    const { container } = render(<PrivateRoute component={MockComponent} />);
+    const { container } = render(<PrivateRoute component={MockComponent} to="/" />);
     expect(container).toMatchInlineSnapshot('<div />');
   });
 });

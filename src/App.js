@@ -24,8 +24,8 @@ function App() {
         <NavBar />
         <Router>
           <Switch>
-            <PrivateRoute component={Home} path="/home" exact />
-            <RedirectLoggedInRoute component={LandingPage} path="/login" exact />
+            <PrivateRoute component={Home} path="/home" to="/login" exact />
+            <RedirectLoggedInRoute component={LandingPage} path="/login" to="/" exact />
             <Route path="/register" component={RegisterPage} exact />
             <Route path="/" exact>
               <Redirect to="/home" />
