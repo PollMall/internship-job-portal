@@ -14,7 +14,6 @@ import RegisterPage from './register/RegisterPage';
 import PageNotFound from './404page/PageNotFound';
 import UserProvider from './UserProvider';
 import NavBar from './NavBar';
-
 import PrivateRoute from './PrivateRoute';
 
 function App() {

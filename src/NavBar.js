@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
 
 function NavBar() {
   const classes = useStyles();
-  const [state, dispatch] = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   const handleLogout = React.useCallback(() => {
     dispatch({ type: userAction.LOGOUT });
   });

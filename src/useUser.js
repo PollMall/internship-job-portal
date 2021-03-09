@@ -20,8 +20,8 @@ function reducer(state, action) {
 
 export function useUser(initialValue) {
   const [state, dispatch] = useReducer(reducer, initialValue || { user: JSON.parse(localStorage.getItem('user')) || undefined });
-  return [
+  return {
     state,
     dispatch,
-  ];
+  };
 }
