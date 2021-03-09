@@ -15,16 +15,18 @@ import PageNotFound from './404page/PageNotFound';
 import UserProvider from './UserProvider';
 import NavBar from './NavBar';
 
+import PrivateRoute from './PrivateRoute';
+
 function App() {
+  // const user = null;
+
   return (
     <ApolloProvider client={apolloClient}>
       <UserProvider>
         <NavBar />
         <Router>
           <Switch>
-            <Route path="/home" exact>
-              <Home />
-            </Route>
+            <PrivateRoute component={Home} path="/home" exact />
             <Route path="/login" exact>
               <LandingPage />
             </Route>
