@@ -15,6 +15,7 @@ import PageNotFound from './404page/PageNotFound';
 import UserProvider from './UserProvider';
 import NavBar from './NavBar';
 import PrivateRoute from './PrivateRoute';
+import RedirectLoggedInRoute from './RedirectLoggedInRoute';
 
 function App() {
   return (
@@ -24,18 +25,12 @@ function App() {
         <Router>
           <Switch>
             <PrivateRoute component={Home} path="/home" exact />
-            <Route path="/login" exact>
-              <LandingPage />
-            </Route>
-            <Route path="/register" exact>
-              <RegisterPage />
-            </Route>
+            <RedirectLoggedInRoute component={LandingPage} path="/login" exact />
+            <Route path="/register" component={RegisterPage} exact />
             <Route path="/" exact>
               <Redirect to="/home" />
             </Route>
-            <Route>
-              <PageNotFound />
-            </Route>
+            <Route component={PageNotFound} />
           </Switch>
         </Router>
       </UserProvider>
