@@ -16,6 +16,7 @@ import UserProvider from './UserProvider';
 import NavBar from './NavBar';
 import PrivateRoute from './PrivateRoute';
 import RedirectLoggedInRoute from './RedirectLoggedInRoute';
+import JobFeedPage from './job-feed/JobFeedPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Router>
           <Switch>
             <PrivateRoute component={Home} path="/home" to="/login" exact />
+            <PrivateRoute component={JobFeedPage} path="/jobs" to="/login" exact />
             <RedirectLoggedInRoute component={LandingPage} path="/login" to="/" exact />
             <Route path="/register" component={RegisterPage} exact />
             <Route path="/" exact>
