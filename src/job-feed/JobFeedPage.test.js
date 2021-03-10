@@ -62,8 +62,8 @@ describe('JobFeedPage tests', () => {
       },
     };
 
-    render(<JobFeedPage />, [makeMock(mockData, mockResponseType.ERROR)], { user: { id: 1, username: 'user', password: 'user' } });
+    render(<JobFeedPage errorAutoHide={10} />, [makeMock(mockData, mockResponseType.ERROR)], { user: { id: 1, username: 'user', password: 'user' } });
     expect(await screen.findByTestId('job-feed-error')).toBeInTheDocument();
-    await waitForElementToBeRemoved(() => screen.queryByTestId('job-feed-error'), { timeout: 3000 });
+    await waitForElementToBeRemoved(() => screen.queryByTestId('job-feed-error'));
   });
 });

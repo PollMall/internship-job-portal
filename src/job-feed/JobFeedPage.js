@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-function JobFeedPage() {
+function JobFeedPage({ errorAutoHide }) {
   const classes = useStyles();
   const { data, loading, error } = useQuery(GET_JOBS);
   const [showError, setShowError] = useState(false);
@@ -42,7 +42,7 @@ function JobFeedPage() {
     <div className={classes.root}>
       <h2 className={classes.title}>Jobs Page</h2>
       {loading && <CircularProgress className={classes.progress} color="inherit" />}
-      <Snackbar data-testid="job-feed-error" open={showError} autoHideDuration={2500} onClose={handleOnCloseSnackbar}>
+      <Snackbar data-testid="job-feed-error" open={showError} autoHideDuration={errorAutoHide || 2500} onClose={handleOnCloseSnackbar}>
         <Alert severity="error">
           An error occured!
         </Alert>
