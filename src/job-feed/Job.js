@@ -9,6 +9,9 @@ const useStyles = (isAvailable) => makeStyles({
     margin: 12,
     backgroundColor: isAvailable ? 'initial' : 'indianred',
     opacity: isAvailable ? 1 : 0.5,
+    '&:hover': {
+      backgroundColor: '#f2f4f7',
+    },
   },
   title: {
     fontSize: 12,
@@ -19,12 +22,12 @@ const useStyles = (isAvailable) => makeStyles({
 });
 
 function Job({
-  name, description, isAvailable, companyName, updatedAt,
+  name, description, isAvailable, companyName, updatedAt, onClick,
 }) {
   const classes = useStyles(isAvailable)();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={onClick}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {isAvailable ? 'Available' : 'Unavailable'}

@@ -21,11 +21,11 @@ Object.defineProperties(window, {
   }
 });
 
-const AllProviders = ({ mocks, initialValue, children }) => {
+const AllProviders = ({ mocks, initialValue, initialPath = '/',children }) => {
   return (
     <MockedProvider mocks={mocks} addTypename={false}>
       <UserProvider initialValue={initialValue}>
-        <MemoryRouter>
+        <MemoryRouter initialEntries={[initialPath]} initialIndex={0}>
           {children}
         </MemoryRouter>
       </UserProvider>
@@ -33,9 +33,9 @@ const AllProviders = ({ mocks, initialValue, children }) => {
   )
 }
 
-const customRender = (ui, mocks, initialValue) => {
+const customRender = (ui, mocks, initialValue, initialPath) => {
   return render(
-    <AllProviders mocks={mocks || []} initialValue={initialValue}>
+    <AllProviders mocks={mocks || []} initialValue={initialValue} initialPath={initialPath}>
       {ui}
     </AllProviders>
   )
