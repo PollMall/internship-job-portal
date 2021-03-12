@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import {
-  CircularProgress, Snackbar, makeStyles,
+  CircularProgress, Snackbar,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useQuery } from '@apollo/client';
 import { GET_JOBS } from '../queries/JobQueries';
 import Job from './Job';
-import styles from './styles.json';
-
-const useStyles = makeStyles(styles);
+import useStyles from './useStyles';
 
 function JobFeedPage({ errorAutoHide = 2500 }) {
   const classes = useStyles();
@@ -31,7 +29,7 @@ function JobFeedPage({ errorAutoHide = 2500 }) {
 
   return (
     <div className={classes.root}>
-      <h2 className={classes.title}>Jobs Page</h2>
+      <h2 className={classes.jobTitle}>Jobs Page</h2>
       {loading && <CircularProgress className={classes.progress} color="inherit" />}
       <Snackbar
         data-testid="job-feed-error"

@@ -1,48 +1,22 @@
 import React from 'react';
 import {
-  Card, CardContent, CardActions, Typography, makeStyles, Button, Avatar,
+  Card, CardContent, CardActions, Typography, Button, Avatar,
 } from '@material-ui/core';
 import JobDetailsSection from './JobDetailsSection';
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    margin: 12,
-  },
-  title: {
-    fontSize: 12,
-  },
-
-  companyName: {
-    marginLeft: 4,
-  },
-
-  companyLogo: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-
-  content: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    '& > *': {
-      width: 300,
-    },
-  },
-});
+import useStyles from './useStyles';
 
 function JobDetails({ job }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} data-testid="job-details-data">
+    <Card data-testid="job-details-data">
       <CardContent>
         <Typography variant="h3">
           {job.name}
         </Typography>
         <div className={classes.companyLogo}>
           <Avatar alt={job.company.name} src={job.company.contactInfo.avatarUrl} />
-          <Typography className={classes.companyName} color="textSecondary">
+          <Typography color="textSecondary">
             {job.company.name}
           </Typography>
         </div>

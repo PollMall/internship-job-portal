@@ -1,36 +1,21 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Card, makeStyles, Typography, CardContent,
+  Card, Typography, CardContent,
 } from '@material-ui/core';
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    margin: 12,
-    '&:hover': {
-      backgroundColor: '#f2f4f7',
-    },
-  },
-  title: {
-    fontSize: 12,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+import useStyles from './useStyles';
 
 function Job({ job }) {
   const classes = useStyles();
   const history = useHistory();
 
   return (
-    <Card className={classes.root} onClick={() => history.push(`/jobs/${job.id}`)}>
+    <Card className={classes.jobCard} onClick={() => history.push(`/jobs/${job.id}`)}>
       <CardContent>
         <Typography variant="h5" component="h2">
           {job.name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography className={classes.companyName} color="textSecondary">
           {job.company.name}
         </Typography>
         <Typography variant="body2" component="p">
