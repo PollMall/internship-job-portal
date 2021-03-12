@@ -15,7 +15,7 @@ function JobFeedPage({ errorAutoHide = 2500 }) {
 
   const memoJobs = React.useMemo(() => (
     data?.jobs?.filter((it) => it.isAvailable).map((it) => <Job key={it.id} job={it} />)
-  ), [data]);
+  ), [data?.jobs]);
 
   const handleOnCloseSnackbar = React.useCallback(() => {
     setShowError(false);
