@@ -21,7 +21,7 @@ Object.defineProperties(window, {
   }
 });
 
-const AllProviders = ({ mocks, initialValue, initialPath = '/',children }) => {
+const AllProviders = ({ mocks, initialValue, initialPath = '/', children }) => {
   return (
     <MockedProvider mocks={mocks} addTypename={false}>
       <UserProvider initialValue={initialValue}>

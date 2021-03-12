@@ -48,17 +48,18 @@ describe('RegisterForm testing', () => {
     ['test', 'test', 'test', '', true],
     ['', 'test', '', 'test', true],
     ['', '', '', '', true],
-  ])('check btn disabled for username: %s, firstName: %s, lastName: %s, password: %s', (username, first, last, pass, expected) => {
-    render(<RegisterForm />);
-    const usernameInput = screen.getByLabelText(/Username/);
-    const firstInput = screen.getByLabelText(/First Name/);
-    const lastInput = screen.getByLabelText(/Last Name/);
-    const passInput = screen.getByLabelText(/Password/);
-    const registerBtn = screen.getByRole('button');
-    userEvent.type(usernameInput, username);
-    userEvent.type(firstInput, first);
-    userEvent.type(lastInput, last);
-    userEvent.type(passInput, pass);
-    expect(registerBtn.hasAttribute('disabled')).toEqual(expected);
-  });
+  ])('check btn disabled for username: %s, firstName: %s, lastName: %s, password: %s',
+    (username, first, last, pass, expected) => {
+      render(<RegisterForm />);
+      const usernameInput = screen.getByLabelText(/Username/);
+      const firstInput = screen.getByLabelText(/First Name/);
+      const lastInput = screen.getByLabelText(/Last Name/);
+      const passInput = screen.getByLabelText(/Password/);
+      const registerBtn = screen.getByRole('button');
+      userEvent.type(usernameInput, username);
+      userEvent.type(firstInput, first);
+      userEvent.type(lastInput, last);
+      userEvent.type(passInput, pass);
+      expect(registerBtn.hasAttribute('disabled')).toEqual(expected);
+    });
 });

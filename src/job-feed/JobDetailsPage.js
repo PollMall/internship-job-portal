@@ -26,29 +26,19 @@ function JobDetailsPage({ errorAutoHide = 2500 }) {
   return (
     <div>
       {loading && <CircularProgress color="inherit" />}
-      <Snackbar data-testid="job-details-error" open={showError} autoHideDuration={errorAutoHide} onClose={handleOnCloseSnackbar}>
+      <Snackbar
+        data-testid="job-details-error"
+        open={showError}
+        autoHideDuration={errorAutoHide}
+        onClose={handleOnCloseSnackbar}
+      >
         <Alert severity="error">
           An error occured!
         </Alert>
       </Snackbar>
       {data
       && (
-      <JobDetails
-        name={data.job.name}
-        description={data.job.description}
-        companyName={data.job.company.name}
-        companyUser={data.job.company.user}
-        email={data.job.company.contactInfo.email}
-        phone={data.job.company.contactInfo.phone}
-        city={data.job.company.contactInfo.city}
-        country={data.job.company.contactInfo.country.name}
-        website={data.job.company.contactInfo.website}
-        avatarUrl={data.job.company.contactInfo.avatarUrl}
-        aboutCompany={data.job.company.contactInfo.about}
-        jobSkills={data.job.jobSkills}
-        jobRequirements={data.job.jobRequirements}
-        jobBenefits={data.job.jobBenefits}
-      />
+      <JobDetails job={data.job} />
       )}
     </div>
   );

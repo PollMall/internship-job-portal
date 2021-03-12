@@ -1,0 +1,15 @@
+{
+  "root": {
+      "display": "flex",
+      "flexDirection": "column",
+      "alignItems": "center"
+    },
+    "title": {
+      "textAlign": "center"
+    },
+    "cardHolder": {
+      "display": "flex",
+      "flexWrap": "wrap",
+      "justifyContent": "center"
+    }
+}

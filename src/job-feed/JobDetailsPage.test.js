@@ -108,7 +108,14 @@ describe('JobDetailsPage tests', () => {
       },
     };
 
-    render(<PrivateRoute component={JobDetailsPage} path="/jobs/:id" to="/login" exact />, [makeMock(mockData, mockResponseType.SUCCESS)], user, '/jobs/1');
+    render(
+      <PrivateRoute
+        component={JobDetailsPage}
+        path="/jobs/:id"
+        to="/login"
+        exact
+      />, [makeMock(mockData, mockResponseType.SUCCESS)], user, '/jobs/1',
+    );
     expect(await screen.findByTestId('job-details-data')).toBeInTheDocument();
   });
 });

@@ -31,21 +31,19 @@ const useStyles = makeStyles({
   },
 });
 
-function JobDetails({
-  name, description, companyName, companyUser, email, phone, city, country, website, avatarUrl, aboutCompany, jobSkills, jobRequirements, jobBenefits,
-}) {
+function JobDetails({ job }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root} data-testid="job-details-data">
       <CardContent>
         <Typography variant="h3">
-          {name}
+          {job.name}
         </Typography>
         <div className={classes.companyLogo}>
-          <Avatar alt={companyName} src={avatarUrl} />
+          <Avatar alt={job.company.name} src={job.company.contactInfo.avatarUrl} />
           <Typography className={classes.companyName} color="textSecondary">
-            {companyName}
+            {job.company.name}
           </Typography>
         </div>
 
@@ -54,23 +52,23 @@ function JobDetails({
             fields={[
               {
                 title: 'Description',
-                data: [description],
+                data: [job.description],
                 component: 'p',
               },
               {
                 title: 'Contact info',
                 data: [
-                  `${companyUser.firstName} ${companyUser.lastName}`,
-                  `Address: ${city}, ${country}`,
-                  `Email: ${email}`,
-                  `Phone: ${phone}`,
-                  `Website: ${website}`,
+                  `${job.company.user.firstName} ${job.company.user.lastName}`,
+                  `Address: ${job.company.contactInfocity}, ${job.company.contactInfo.country.name}`,
+                  `Email: ${job.company.contactInfo.email}`,
+                  `Phone: ${job.company.contactInfo.phone}`,
+                  `Website: ${job.company.contactInfo.website}`,
                 ],
                 component: 'p',
               },
               {
                 title: 'About company',
-                data: [aboutCompany],
+                data: [job.company.contactInfo.about],
                 component: 'p',
               },
             ]}
@@ -80,17 +78,17 @@ function JobDetails({
             fields={[
               {
                 title: 'Required skills',
-                data: jobSkills.map((js) => js.skill.name),
+                data: job.jobSkills.map((js) => js.skill.name),
                 component: 'li',
               },
               {
                 title: 'Job requirements',
-                data: jobRequirements.map((jr) => jr.name),
+                data: job.jobRequirements.map((jr) => jr.name),
                 component: 'li',
               },
               {
                 title: 'Job benefits',
-                data: jobBenefits.map((jb) => jb.name),
+                data: job.jobBenefits.map((jb) => jb.name),
                 component: 'li',
               },
             ]}
