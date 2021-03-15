@@ -1,45 +1,28 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import {
-  Card, makeStyles, Typography, CardContent,
+  Card, Typography, CardContent,
 } from '@material-ui/core';
+import useStyles from './useStyles';
 
-const useStyles = (isAvailable) => makeStyles({
-  root: {
-    minWidth: 275,
-    margin: 12,
-    backgroundColor: isAvailable ? 'initial' : 'indianred',
-    opacity: isAvailable ? 1 : 0.5,
-  },
-  title: {
-    fontSize: 12,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
-
-function Job({
-  name, description, isAvailable, companyName, updatedAt,
-}) {
-  const classes = useStyles(isAvailable)();
+function Job({ job }) {
+  const classes = useStyles();
+  const history = useHistory();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.jobCard} onClick={() => history.push(`/jobs/${job.id}`)}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {isAvailable ? 'Available' : 'Unavailable'}
-        </Typography>
         <Typography variant="h5" component="h2">
-          {name}
+          {job.name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {companyName}
+        <Typography className={classes.companyName} color="textSecondary">
+          {job.company.name}
         </Typography>
         <Typography variant="body2" component="p">
-          {description}
+          {job.description}
         </Typography>
         <Typography variant="caption" display="block" color="textSecondary">
-          {`Last updated on: ${new Date(updatedAt).toLocaleDateString()}`}
+          {`Last updated on: ${new Date(job.updatedAt).toLocaleDateString()}`}
         </Typography>
       </CardContent>
     </Card>
