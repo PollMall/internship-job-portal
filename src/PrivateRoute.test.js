@@ -21,4 +21,10 @@ describe('PrivateRoute tests', () => {
     const { container } = render(<PrivateRoute component={MockComponent} to="/" />);
     expect(container).toMatchInlineSnapshot('<div />');
   });
+
+  it('should redirect unauthorized', () => {
+    const user = { userRole: { id: 3, name: 'user' } };
+    render(<PrivateRoute component={MockComponent} to="/" roles={['sys_admin']} />, undefined, { user });
+    expect(screen.queryByText(/mock/i)).not.toBeInTheDocument();
+  });
 });

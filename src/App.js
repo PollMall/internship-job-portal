@@ -18,6 +18,7 @@ import PrivateRoute from './PrivateRoute';
 import RedirectLoggedInRoute from './RedirectLoggedInRoute';
 import JobFeedPage from './job-feed/JobFeedPage';
 import JobDetailsPage from './job-feed/JobDetailsPage';
+import AdminPage from './admin/AdminPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <PrivateRoute component={Home} path="/home" to="/login" exact />
             <PrivateRoute component={JobFeedPage} path="/jobs" to="/login" exact />
             <PrivateRoute component={JobDetailsPage} path="/jobs/:id" to="/login" exact />
+            <PrivateRoute component={AdminPage} path="/admin" to="/login" exact roles={['sys_admin']} />
             <RedirectLoggedInRoute component={LandingPage} path="/login" to="/" exact />
             <Route path="/register" component={RegisterPage} exact />
             <Route path="/" exact>
