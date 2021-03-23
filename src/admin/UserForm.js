@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import {
   Grid, TextField, Button, InputLabel,
 } from '@material-ui/core';
@@ -9,17 +8,27 @@ import useStyles from './useStyles';
 import { GET_USER_ROLES, CREATE_USER, UPDATE_USER } from '../queries/UserQueries';
 import Info from '../Info';
 
+export const validateUser = (
+  username, firstName, lastName, password, userRole, callback,
+) => (
+  callback(!!(username && firstName && lastName && password && userRole)));
+
 function UserForm({ user, callApi, errorAutoHide = 2500 }) {
   const [username, setUsername] = React.useState(user?.username || '');
   const [firstName, setFirstName] = React.useState(user?.firstName || '');
   const [lastName, setLastName] = React.useState(user?.lastName || '');
   const [password, setPassword] = React.useState(user?.password || '');
-  const [userRole, setUserRole] = React.useState(user?.userRole ? user.userRole : {});
+  const [userRole, setUserRole] = React.useState(user?.userRole ? user.userRole : '');
   const [showError, setShowError] = React.useState(false);
+  const [valid, setValid] = React.useState(!!user);
   const { data, loading } = useQuery(GET_USER_ROLES);
   const [createUser] = useMutation(CREATE_USER);
   const [updateUser] = useMutation(UPDATE_USER);
   const classes = useStyles();
+
+  React.useEffect(() => {
+    validateUser(username, firstName, lastName, password, userRole, setValid);
+  }, [username, firstName, lastName, password, userRole]);
 
   const memoUserRoles = React.useMemo(() => (
     data?.userRoles.map((ur) => ({ value: ur, label: ur.name }))
@@ -93,7 +102,7 @@ function UserForm({ user, callApi, errorAutoHide = 2500 }) {
             />
           </InputLabel>
         </form>
-        <Button variant="contained" color="primary" fullWidth onClick={onClick}>
+        <Button disabled={!valid} variant="contained" color="primary" fullWidth onClick={onClick}>
           save
         </Button>
       </>

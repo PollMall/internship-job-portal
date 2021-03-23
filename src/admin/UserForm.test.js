@@ -61,4 +61,9 @@ describe('UserForm tests', () => {
     userEvent.click(await screen.findByRole('button'));
     expect(callApi).toThrowError();
   });
+
+  it('should have button disabled', async () => {
+    render(<UserForm />, [makeMock(getUserRoles, mockResponseType.SUCCESS)]);
+    expect((await screen.findByRole('button')).hasAttribute('disabled')).toBeTruthy();
+  });
 });
