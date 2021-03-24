@@ -5,7 +5,7 @@ export const userAction = {
   LOGOUT: 'LOGOUT',
 };
 
-function reducer(state, action) {
+export function reducer(state, action) {
   switch (action.type) {
     case userAction.LOGIN:
       localStorage.setItem('user', JSON.stringify(action.payload));
