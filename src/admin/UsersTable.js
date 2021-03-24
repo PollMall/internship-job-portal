@@ -21,7 +21,7 @@ function UsersTable({ users, refetch }) {
       refetch();
       setShowModal(false);
     } catch (ex) {
-      console.log(ex);
+      console.error(ex);
     }
   };
 

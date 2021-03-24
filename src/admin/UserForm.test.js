@@ -14,9 +14,7 @@ describe('UserForm tests', () => {
     }
   });
 
-  it('should create user', async () => {
-    const callApi = createMockFn();
-    render(<UserForm callApi={callApi} />, [makeMock(getUserRoles, mockResponseType.SUCCESS)]);
+  const simulateUserEvent = async () => {
     const {
       username, firstName, lastName, password, userRole,
     } = users[0];
@@ -25,6 +23,12 @@ describe('UserForm tests', () => {
     userEvent.type(await screen.findByLabelText(/last name/i), lastName);
     userEvent.type(await screen.findByLabelText(/password/i), password);
     userEvent.type(await screen.findByLabelText(/user role/i), `${userRole.name}{arrowdown}{enter}`);
+  };
+
+  it('should create user', async () => {
+    const callApi = createMockFn();
+    render(<UserForm callApi={callApi} />, [makeMock(getUserRoles, mockResponseType.SUCCESS)]);
+    await simulateUserEvent();
 
     userEvent.click(await screen.findByRole('button'));
     expect(callApi).toHaveBeenCalled();
@@ -33,14 +37,7 @@ describe('UserForm tests', () => {
   it('should update user', async () => {
     const callApi = createMockFn();
     render(<UserForm user={users[0]} callApi={callApi} />, [makeMock(getUserRoles, mockResponseType.SUCCESS)]);
-    const {
-      username, firstName, lastName, password, userRole,
-    } = users[1];
-    userEvent.type(await screen.findByLabelText(/username/i), username);
-    userEvent.type(await screen.findByLabelText(/first name/i), firstName);
-    userEvent.type(await screen.findByLabelText(/last name/i), lastName);
-    userEvent.type(await screen.findByLabelText(/password/i), password);
-    userEvent.type(await screen.findByLabelText(/user role/i), `${userRole.name}{arrowdown}{enter}`);
+    await simulateUserEvent();
 
     userEvent.click(await screen.findByRole('button'));
     expect(callApi).toHaveBeenCalled();
@@ -49,14 +46,7 @@ describe('UserForm tests', () => {
   it('should throw error ', async () => {
     const callApi = createMockFn('error');
     render(<UserForm user={users[0]} callApi={callApi} />, [makeMock(getUserRoles, mockResponseType.SUCCESS)]);
-    const {
-      username, firstName, lastName, password, userRole,
-    } = users[1];
-    userEvent.type(await screen.findByLabelText(/username/i), username);
-    userEvent.type(await screen.findByLabelText(/first name/i), firstName);
-    userEvent.type(await screen.findByLabelText(/last name/i), lastName);
-    userEvent.type(await screen.findByLabelText(/password/i), password);
-    userEvent.type(await screen.findByLabelText(/user role/i), `${userRole.name}{arrowdown}{enter}`);
+    await simulateUserEvent();
 
     userEvent.click(await screen.findByRole('button'));
     expect(callApi).toThrowError();

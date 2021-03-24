@@ -8,17 +8,11 @@ import useStyles from './useStyles';
 import { GET_USER_ROLES, CREATE_USER, UPDATE_USER } from '../queries/UserQueries';
 import Info from '../Info';
 
-export const validateUser = (
-  username, firstName, lastName, password, userRole, callback,
-) => (
-  callback(!!(username && firstName && lastName && password && userRole)));
+export const validateUser = (user, callback) => (
+  callback(!!(user?.username && user?.firstName && user?.lastName && user?.password && user?.userRole)));
 
 function UserForm({ user, callApi, errorAutoHide = 2500 }) {
-  const [username, setUsername] = React.useState(user?.username || '');
-  const [firstName, setFirstName] = React.useState(user?.firstName || '');
-  const [lastName, setLastName] = React.useState(user?.lastName || '');
-  const [password, setPassword] = React.useState(user?.password || '');
-  const [userRole, setUserRole] = React.useState(user?.userRole ? user.userRole : '');
+  const [newUser, setNewUser] = React.useState(user);
   const [showError, setShowError] = React.useState(false);
   const [valid, setValid] = React.useState(!!user);
   const { data, loading } = useQuery(GET_USER_ROLES);
@@ -27,8 +21,8 @@ function UserForm({ user, callApi, errorAutoHide = 2500 }) {
   const classes = useStyles();
 
   React.useEffect(() => {
-    validateUser(username, firstName, lastName, password, userRole, setValid);
-  }, [username, firstName, lastName, password, userRole]);
+    validateUser(newUser, setValid);
+  }, [newUser]);
 
   const memoUserRoles = React.useMemo(() => (
     data?.userRoles.map((ur) => ({ value: ur, label: ur.name }))
@@ -36,14 +30,11 @@ function UserForm({ user, callApi, errorAutoHide = 2500 }) {
 
   const onClick = async () => {
     const variables = {
-      username, firstName, lastName, password, userRoleId: userRole.id,
+      ...newUser, userRoleId: newUser?.userRole.id,
     };
     try {
-      if (user) {
-        callApi(updateUser, { ...variables, id: user.id });
-      } else {
-        callApi(createUser, { ...variables });
-      }
+      const func = user ? updateUser : createUser;
+      callApi(func, variables);
       setShowError(false);
     } catch (ex) {
       setShowError(true);
@@ -63,32 +54,32 @@ function UserForm({ user, callApi, errorAutoHide = 2500 }) {
             label="Username"
             name="username"
             id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={newUser?.username || ''}
+            onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
           />
           <TextField
             type="text"
             label="First name"
             name="firstName"
             id="firstName"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={newUser?.firstName || ''}
+            onChange={(e) => setNewUser({ ...newUser, firstName: e.target.value })}
           />
           <TextField
             type="text"
             label="Last name"
             name="lastName"
             id="lastName"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={newUser?.lastName || ''}
+            onChange={(e) => setNewUser({ ...newUser, lastName: e.target.value })}
           />
           <TextField
             type="text"
             label="Password"
             name="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={newUser?.password || ''}
+            onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
           />
           <InputLabel id="user-role">
             User role
@@ -97,8 +88,8 @@ function UserForm({ user, callApi, errorAutoHide = 2500 }) {
               aria-labelledby="user-role"
               data-testid="admin-user-role"
               options={memoUserRoles}
-              defaultValue={{ value: userRole, label: userRole?.name }}
-              onChange={(e) => setUserRole(e.value)}
+              defaultValue={newUser && { value: newUser.userRole, label: newUser.userRole?.name }}
+              onChange={(e) => setNewUser({ ...newUser, userRole: e.value })}
             />
           </InputLabel>
         </form>
