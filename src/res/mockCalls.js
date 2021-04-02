@@ -1,5 +1,10 @@
-import { users, userRoles } from './mockData';
-import { GET_USERS, DELETE_USER, GET_USER_ROLES } from '../queries/UserQueries';
+import {
+  users, userRoles, user, contactInfo,
+} from './mockData';
+import {
+  GET_USERS, DELETE_USER, GET_USER_ROLES, GET_USER, UPDATE_USER,
+} from '../queries/UserQueries';
+import { UPDATE_CONTACT_INFO } from '../queries/ContactInfoQueries';
 
 export const mockGetUsers = {
   query: GET_USERS,
@@ -24,3 +29,27 @@ export const getUserRoles = {
     userRoles,
   },
 };
+
+export const getUser = {
+  query: GET_USER,
+  variables: { id: 1 },
+  response: {
+    user,
+  },
+};
+
+export const updateUser = (variables) => ({
+  query: UPDATE_USER,
+  variables,
+  response: {
+    updateUser: user,
+  },
+});
+
+export const updateContactInfo = (variables) => ({
+  query: UPDATE_CONTACT_INFO,
+  variables,
+  response: {
+    updateContactInfo: contactInfo,
+  },
+});

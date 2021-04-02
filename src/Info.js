@@ -20,9 +20,8 @@ function Info({ loading, error, errorAutoHide = 2500 }) {
 
   return (
     <>
-      {loading && <CircularProgress className={classes.progress} color="inherit" />}
+      {loading && <CircularProgress data-testid="info-loading" className={classes.progress} color="inherit" />}
       <Snackbar
-        data-testid="job-feed-error"
         open={showError}
         autoHideDuration={errorAutoHide}
         onClose={handleOnCloseSnackbar}
