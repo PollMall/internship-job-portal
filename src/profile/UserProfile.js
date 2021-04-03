@@ -30,7 +30,7 @@ function UserProfile() {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body2" style={{ textAlign: 'center' }}>
-          {`Last updated on ${new Date(state.user?.updatedAt * 1000).toLocaleDateString()}`}
+          {`Last updated on ${new Date(state.user?.updatedAt * 1000).toLocaleDateString('en-US')}`}
         </Typography>
       </Grid>
     </Grid>

@@ -1638,7 +1638,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
         class="MuiTypography-root MuiTypography-body2"
         style="text-align: center;"
       >
-        Last updated on 01/04/2021
+        Last updated on 4/1/2021
       </p>
     </div>
   </div>
