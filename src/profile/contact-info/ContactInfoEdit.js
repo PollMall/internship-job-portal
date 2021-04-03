@@ -17,10 +17,10 @@ function ContactInfoEdit() {
   }, []);
 
   const onSave = React.useCallback(async (contactInfo) => {
-    const variables = { ...contactInfo, countryId: contactInfo.country?.id };
+    const variables = { ...contactInfo, countryId: contactInfo?.country?.id };
     try {
       let newContactInfo;
-      if (contactInfo.id) {
+      if (contactInfo?.id) {
         newContactInfo = (await updateContactInfoCall({ variables })).data.updateContactInfo;
       } else {
         newContactInfo = (await createContactInfoCall({ variables })).data.createContactInfo;

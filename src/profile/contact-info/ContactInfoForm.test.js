@@ -1,15 +1,15 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import BasicInfoForm from './BasicInfoForm';
+import ContactInfoForm from './ContactInfoForm';
 import { render } from '../../setupTests';
-import { user } from '../../res/mockData';
+import { contactInfo } from '../../res/mockData';
 
-describe('BasicInfoForm tests', () => {
+describe('ContactInfoForm tests', () => {
   const onCancel = jest.fn().mockImplementation();
 
   it('should cancel form', () => {
-    render(<BasicInfoForm user={user} onCancel={onCancel} />);
+    render(<ContactInfoForm contactInfo={contactInfo} onCancel={onCancel} />);
 
     const cancel = screen.getByText(/cancel/i);
     userEvent.click(cancel);

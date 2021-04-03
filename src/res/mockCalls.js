@@ -1,10 +1,9 @@
 import {
-  users, userRoles, user, contactInfo,
+  users, userRoles, user,
 } from './mockData';
 import {
-  GET_USERS, DELETE_USER, GET_USER_ROLES, GET_USER, UPDATE_USER,
+  GET_USERS, DELETE_USER, GET_USER_ROLES, GET_USER,
 } from '../queries/UserQueries';
-import { UPDATE_CONTACT_INFO } from '../queries/ContactInfoQueries';
 
 export const mockGetUsers = {
   query: GET_USERS,
@@ -37,19 +36,3 @@ export const getUser = {
     user,
   },
 };
-
-export const updateUser = (variables) => ({
-  query: UPDATE_USER,
-  variables,
-  response: {
-    updateUser: user,
-  },
-});
-
-export const updateContactInfo = (variables) => ({
-  query: UPDATE_CONTACT_INFO,
-  variables,
-  response: {
-    updateContactInfo: contactInfo,
-  },
-});

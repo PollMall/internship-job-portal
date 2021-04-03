@@ -37,6 +37,7 @@ function NewSkill({ skills, userId, dispatch }) {
         />
       </InputLabel>
       <Slider
+        data-testid="newskill-rating"
         defaultValue={1}
         valueLabelDisplay="auto"
         marks

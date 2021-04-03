@@ -39,8 +39,8 @@ function WorkExperiencesEdit() {
       dispatch({
         type: userProfileAction.UPDATE_WORK_EXPERIENCES,
         payload:
-          Array.from(state.user?.userEducations, (we) => (
-            we.id === workExperience.id ? { ...data.updateUserEducation } : we
+          Array.from(state.user?.userWorkExperiences, (we) => (
+            we.id === workExperience.id ? { ...data.updateUserWorkExperience } : we
           )),
       });
     } catch (ex) {

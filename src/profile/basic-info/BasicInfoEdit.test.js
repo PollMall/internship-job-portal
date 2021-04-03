@@ -1,15 +1,31 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BasicInfoEdit from './BasicInfoEdit';
 import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 import { render } from '../../setupTests';
-import { updateContactInfo, updateUser } from '../../res/mockCalls';
 import { user } from '../../res/mockData';
-import { makeMock, mockResponseType } from '../../queries/MockApollo';
 
-describe('UserProfile tests', () => {
+jest.mock('@apollo/client', () => ({
+  ...jest.requireActual('@apollo/client'),
+  useMutation: (query) => (
+    [async ({ variables }) => {
+      if (variables) {
+        return {
+          data: {
+            updateUser: variables,
+            updateContactInfo: variables,
+          },
+          query,
+        };
+      }
+      throw new Error('error');
+    }]
+  ),
+}));
+
+describe('BasicInfoEdit tests', () => {
   const state = {
     user,
     basicInfoEdit: true,
@@ -20,16 +36,6 @@ describe('UserProfile tests', () => {
   const lastName = 'a';
   const about = 'a';
   const url = 'a';
-  const updateUserVariables = {
-    ...user,
-    firstName,
-    lastName,
-  };
-  const updateContactInfoVariables = {
-    id: user.contactInfo.id,
-    about,
-    avatarUrl: url,
-  };
 
   it('should cancel form', () => {
     render(
@@ -43,18 +49,12 @@ describe('UserProfile tests', () => {
     expect(dispatch).toHaveBeenCalledWith({ type: userProfileAction.CANCEL, payload: section });
   });
 
-  it('should save form', () => {
-    const userMockData = updateUser(updateUserVariables);
-    const contactInfoMockData = updateContactInfo(updateContactInfoVariables);
+  it('should save form', async () => {
     render(
       <UserProfileContext.Provider value={{ state, dispatch }}>
         <BasicInfoEdit />
       </UserProfileContext.Provider>,
-      [makeMock(userMockData, mockResponseType.SUCCESS), makeMock(contactInfoMockData, mockResponseType.SUCCESS)],
     );
-
-    console.log(userMockData);
-    console.log(contactInfoMockData);
 
     const save = screen.getByText(/save/i);
     const firstNameInput = screen.getByLabelText(/first name/i);
@@ -67,6 +67,22 @@ describe('UserProfile tests', () => {
     userEvent.type(urlInput, url);
 
     userEvent.click(save);
-    expect(dispatch).toHaveBeenCalledTimes(3);
+    await waitFor(() => {
+      expect(dispatch).toHaveBeenCalledTimes(3);
+    });
+  });
+
+  it('should throw error', async () => {
+    render(
+      <UserProfileContext.Provider value={{ state: { user: undefined }, dispatch }}>
+        <BasicInfoEdit />
+      </UserProfileContext.Provider>,
+    );
+
+    const save = screen.getByText(/save/i);
+    userEvent.click(save);
+    await waitFor(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+    });
   });
 });

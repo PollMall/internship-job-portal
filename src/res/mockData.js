@@ -90,12 +90,26 @@ export const user = {
       startDate: '1538265600',
       endDate: '1617235200',
     },
+    {
+      id: 2,
+      institution: 'institution2',
+      description: 'description2',
+      startDate: '1538265600',
+      endDate: '1617235200',
+    },
   ],
   userWorkExperiences: [
     {
       id: 1,
       institution: 'institution',
       description: 'description',
+      startDate: '1617148800',
+      endDate: '1617235200',
+    },
+    {
+      id: 2,
+      institution: 'institution2',
+      description: 'description2',
       startDate: '1617148800',
       endDate: '1617235200',
     },

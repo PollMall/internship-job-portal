@@ -8,10 +8,10 @@ function EducationEdit({ education: actualEducation, onDelete, onUpdate }) {
   const [education, setEducation] = useState({
     ...actualEducation,
     startDate: actualEducation.startDate
-      ? new Date(parseInt(actualEducation.startDate * 1000, 10)).toISOString().split('T')[0]
+      ? new Date(parseInt(actualEducation?.startDate * 1000, 10)).toISOString().split('T')[0]
       : '',
     endDate: actualEducation.endDate
-      ? new Date(parseInt(actualEducation.endDate * 1000, 10)).toISOString().split('T')[0]
+      ? new Date(parseInt(actualEducation?.endDate * 1000, 10)).toISOString().split('T')[0]
       : '',
   });
   const [valid, setValid] = useState(false);
@@ -19,11 +19,17 @@ function EducationEdit({ education: actualEducation, onDelete, onUpdate }) {
 
   React.useEffect(() => {
     validateFields(education, setValid);
-    setIsEdited(JSON.stringify(education) !== JSON.stringify(actualEducation));
+    setIsEdited(
+      JSON.stringify({
+        ...education,
+        startDate: education?.startDate ? (new Date(education.startDate).valueOf() / 1000).toString() : '',
+        endDate: education?.endDate ? (new Date(education.endDate).valueOf() / 1000).toString() : '',
+      }) !== JSON.stringify(actualEducation),
+    );
   }, [education]);
 
   const onDeleteClick = () => {
-    onDelete(education.id);
+    onDelete(education?.id);
   };
 
   const onUpdateClick = () => {
@@ -57,7 +63,7 @@ function EducationEdit({ education: actualEducation, onDelete, onUpdate }) {
       <TextField
         fullWidth
         type="date"
-        value={education.startDate}
+        value={education?.startDate}
         label="Start date"
         name="startDate"
         id="startDate"
@@ -70,7 +76,7 @@ function EducationEdit({ education: actualEducation, onDelete, onUpdate }) {
       <TextField
         fullWidth
         type="date"
-        value={education.endDate}
+        value={education?.endDate}
         label="End date"
         name="endDate"
         id="endDate"
@@ -80,12 +86,10 @@ function EducationEdit({ education: actualEducation, onDelete, onUpdate }) {
         onChange={(e) => (
           setEducation({ ...education, endDate: e.target.value }))}
       />
-      {isEdited && (
-      <Button onClick={onUpdateClick} disabled={!valid}>
+      <Button onClick={onUpdateClick} disabled={!valid || !isEdited}>
         <CheckIcon />
         save
       </Button>
-      )}
       <Button onClick={onDeleteClick}>
         <DeleteIcon />
         delete

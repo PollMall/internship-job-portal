@@ -13,18 +13,13 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
         class="MuiGrid-root makeStyles-section-3 MuiGrid-item"
       >
         <div
-          class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-5 MuiAvatar-colorDefault"
+          class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-5"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiAvatar-fallback"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-            />
-          </svg>
+          <img
+            alt="firstName"
+            class="MuiAvatar-img"
+            src="url"
+          />
         </div>
         <form>
           <div
@@ -79,8 +74,8 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink="false"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink="true"
               for="about"
               id="about-label"
             >
@@ -96,7 +91,9 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 name="about"
                 rows="1"
                 style="height: 0px; overflow: hidden;"
-              />
+              >
+                about
+              </textarea>
               <textarea
                 aria-hidden="true"
                 class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInput-inputMultiline"
@@ -110,8 +107,8 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink="false"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink="true"
               for="photoUrl"
               id="photoUrl-label"
             >
@@ -126,7 +123,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 id="photoUrl"
                 name="photoUrl"
                 type="text"
-                value=""
+                value="url"
               />
             </div>
           </div>
@@ -201,8 +198,8 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink="false"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink="true"
               for="email"
               id="email-label"
             >
@@ -217,7 +214,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 id="email"
                 name="email"
                 type="text"
-                value=""
+                value="email"
               />
             </div>
           </div>
@@ -225,8 +222,8 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink="false"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink="true"
               for="phone"
               id="phone-label"
             >
@@ -241,7 +238,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 id="phone"
                 name="phone"
                 type="text"
-                value=""
+                value="+41234567890"
               />
             </div>
           </div>
@@ -249,8 +246,8 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink="false"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink="true"
               for="city"
               id="city-label"
             >
@@ -265,7 +262,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 id="city"
                 name="city"
                 type="text"
-                value=""
+                value="city"
               />
             </div>
           </div>
@@ -273,8 +270,8 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink="false"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink="true"
               for="website"
               id="website-label"
             >
@@ -289,7 +286,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 id="website"
                 name="website"
                 type="text"
-                value=""
+                value="website"
               />
             </div>
           </div>
@@ -367,6 +364,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root makeStyles-icon-2 MuiSvgIcon-fontSizeSmall"
+              data-testid="skill-delete-icon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -377,6 +375,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
           </li>
           <span
             class="MuiSlider-root MuiSlider-colorPrimary"
+            data-testid="skill-rating"
           >
             <span
               class="MuiSlider-rail"
@@ -449,6 +448,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root makeStyles-icon-2 MuiSvgIcon-fontSizeSmall"
+              data-testid="skill-delete-icon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -459,6 +459,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
           </li>
           <span
             class="MuiSlider-root MuiSlider-colorPrimary"
+            data-testid="skill-rating"
           >
             <span
               class="MuiSlider-rail"
@@ -609,6 +610,7 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
           </label>
           <span
             class="MuiSlider-root MuiSlider-colorPrimary"
+            data-testid="newskill-rating"
           >
             <span
               class="MuiSlider-rail"
@@ -827,8 +829,9 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
               </div>
             </div>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text"
-              tabindex="0"
+              class="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
+              disabled=""
+              tabindex="-1"
               type="button"
             >
               <span
@@ -846,9 +849,163 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 </svg>
                 save
               </span>
+            </button>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                  />
+                </svg>
+                delete
+              </span>
               <span
                 class="MuiTouchRipple-root"
               />
+            </button>
+          </form>
+        </div>
+        <div
+          class="MuiPaper-root makeStyles-subsection-4 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <form>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="institution"
+                id="institution-label"
+              >
+                Institution
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input"
+                  id="institution"
+                  name="institution"
+                  type="text"
+                  value="institution2"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="description"
+                id="description-label"
+              >
+                Description
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-multiline MuiInput-multiline"
+              >
+                <textarea
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInput-inputMultiline"
+                  id="description"
+                  name="description"
+                  rows="1"
+                  style="height: 0px; overflow: hidden;"
+                >
+                  description2
+                </textarea>
+                <textarea
+                  aria-hidden="true"
+                  class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInput-inputMultiline"
+                  readonly=""
+                  style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
+                  tabindex="-1"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="startDate"
+                id="startDate-label"
+              >
+                Start date
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input"
+                  id="startDate"
+                  name="startDate"
+                  type="date"
+                  value="2018-09-30"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="endDate"
+                id="endDate-label"
+              >
+                End date
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input"
+                  id="endDate"
+                  name="endDate"
+                  type="date"
+                  value="2021-04-01"
+                />
+              </div>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                  />
+                </svg>
+                save
+              </span>
             </button>
             <button
               class="MuiButtonBase-root MuiButton-root MuiButton-text"
@@ -1133,8 +1290,9 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
               </div>
             </div>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text"
-              tabindex="0"
+              class="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
+              disabled=""
+              tabindex="-1"
               type="button"
             >
               <span
@@ -1152,9 +1310,163 @@ exports[`UserProfile tests should match snapshot in edit mode 1`] = `
                 </svg>
                 save
               </span>
+            </button>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                  />
+                </svg>
+                delete
+              </span>
               <span
                 class="MuiTouchRipple-root"
               />
+            </button>
+          </form>
+        </div>
+        <div
+          class="MuiPaper-root makeStyles-subsection-4 MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <form>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="institution"
+                id="institution-label"
+              >
+                Institution
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input"
+                  id="institution"
+                  name="institution"
+                  type="text"
+                  value="institution2"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="description"
+                id="description-label"
+              >
+                Description
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-multiline MuiInput-multiline"
+              >
+                <textarea
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInput-inputMultiline"
+                  id="description"
+                  name="description"
+                  rows="1"
+                  style="height: 0px; overflow: hidden;"
+                >
+                  description2
+                </textarea>
+                <textarea
+                  aria-hidden="true"
+                  class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInput-inputMultiline"
+                  readonly=""
+                  style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
+                  tabindex="-1"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="startDate"
+                id="startDate-label"
+              >
+                Start date
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input"
+                  id="startDate"
+                  name="startDate"
+                  type="date"
+                  value="2021-03-31"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+                data-shrink="true"
+                for="endDate"
+                id="endDate-label"
+              >
+                End date
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input"
+                  id="endDate"
+                  name="endDate"
+                  type="date"
+                  value="2021-04-01"
+                />
+              </div>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                  />
+                </svg>
+                save
+              </span>
             </button>
             <button
               class="MuiButtonBase-root MuiButton-root MuiButton-text"

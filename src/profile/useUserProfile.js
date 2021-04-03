@@ -16,7 +16,7 @@ export const userProfileAction = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case userProfileAction.UPDATE_USER:
-      return { ...state, user: action.payload, isEdit: false };
+      return { ...state, user: action.payload };
     case userProfileAction.UPDATE_CONTACT_INFO:
       return { ...state, user: { ...state.user, contactInfo: action.payload } };
     case userProfileAction.UPDATE_SKILLS:

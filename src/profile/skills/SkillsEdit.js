@@ -8,7 +8,7 @@ import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 import SkillEdit from './SkillEdit';
 
-function skillsEdit() {
+function SkillsEdit() {
   const { state, dispatch } = useContext(UserProfileContext);
   const { data, loading, error } = useQuery(GET_SKILLS);
   const [deleteUserSkillCall] = useMutation(DELETE_USER_SKILL);
@@ -71,4 +71,4 @@ function skillsEdit() {
   );
 }
 
-export default skillsEdit;
+export default SkillsEdit;

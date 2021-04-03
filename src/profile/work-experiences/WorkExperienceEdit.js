@@ -19,11 +19,17 @@ function WorkExperienceEdit({ workExperience: experience, onDelete, onUpdate }) 
 
   React.useEffect(() => {
     validateFields(workExperience, setValid);
-    setIsEdited(JSON.stringify(workExperience) !== JSON.stringify(experience));
+    setIsEdited(
+      JSON.stringify({
+        ...workExperience,
+        startDate: workExperience?.startDate ? (new Date(workExperience.startDate).valueOf() / 1000).toString() : '',
+        endDate: workExperience?.endDate ? (new Date(workExperience.endDate).valueOf() / 1000).toString() : '',
+      }) !== JSON.stringify(experience),
+    );
   }, [workExperience]);
 
   const onDeleteClick = () => {
-    onDelete(workExperience.id);
+    onDelete(workExperience?.id);
   };
 
   const onUpdateClick = () => {
@@ -57,7 +63,7 @@ function WorkExperienceEdit({ workExperience: experience, onDelete, onUpdate }) 
       <TextField
         fullWidth
         type="date"
-        value={workExperience.startDate}
+        value={workExperience?.startDate}
         label="Start date"
         name="startDate"
         id="startDate"
@@ -70,7 +76,7 @@ function WorkExperienceEdit({ workExperience: experience, onDelete, onUpdate }) 
       <TextField
         fullWidth
         type="date"
-        value={workExperience.endDate}
+        value={workExperience?.endDate}
         label="End date"
         name="endDate"
         id="endDate"
@@ -80,12 +86,10 @@ function WorkExperienceEdit({ workExperience: experience, onDelete, onUpdate }) 
         onChange={(e) => (
           setWorkExperience({ ...workExperience, endDate: e.target.value }))}
       />
-      {isEdited && (
-      <Button onClick={onUpdateClick} disabled={!valid}>
+      <Button onClick={onUpdateClick} disabled={!valid || !isEdited}>
         <CheckIcon />
         save
       </Button>
-      )}
       <Button onClick={onDeleteClick}>
         <DeleteIcon />
         delete
