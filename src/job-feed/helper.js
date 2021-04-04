@@ -8,7 +8,7 @@ const makeSectionFields = (job) => ([
     title: 'Contact info',
     data: [
       `${job.company.user.firstName} ${job.company.user.lastName}`,
-      `Address: ${job.company.contactInfocity}, ${job.company.contactInfo.country.name}`,
+      `Address: ${job.company.contactInfo.city}, ${job.company.contactInfo.country.name}`,
       `Email: ${job.company.contactInfo.email}`,
       `Phone: ${job.company.contactInfo.phone}`,
       `Website: ${job.company.contactInfo.website}`,

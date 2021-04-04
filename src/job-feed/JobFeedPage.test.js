@@ -37,7 +37,7 @@ describe('JobFeedPage tests', () => {
             id: 2,
             name: 'name2',
             description: 'description',
-            isAvailable: false,
+            isAvailable: true,
             company: {
               name: 'company',
             },

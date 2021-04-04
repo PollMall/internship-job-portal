@@ -134,3 +134,98 @@ export const user = {
   ],
   updatedAt: 1617309323,
 };
+
+export const jobs = [
+  {
+    id: 1,
+    name: 'Senior Frontend Engineer (ReactJS)',
+    description: "We're hiring! Start your career as a UI developer",
+    isAvailable: true,
+    company: {
+      name: 'Modus Create',
+    },
+    updatedAt: 1614432203,
+  },
+  {
+    id: 2,
+    name: 'Full stack developer',
+    description: 'Looking for a passionate full stack developer',
+    isAvailable: true,
+    company: {
+      name: 'Modus Create',
+    },
+    updatedAt: 1614432203,
+  },
+];
+
+export const jobDetails = {
+  id: 1,
+  name: 'Senior Frontend Engineer (ReactJS)',
+  description: "We're hiring! Start your career as a UI developer",
+  company: {
+    name: 'Modus Create',
+    user: {
+      firstName: 'Management',
+      lastName: 'Modus',
+    },
+    contactInfo: {
+      email: 'contact@moduscreate.com',
+      phone: '+40-0786-887-444',
+      city: 'Cluj Napoca',
+      country: {
+        name: 'Romania',
+      },
+      website: 'https://moduscreate.com/',
+      avatarUrl: 'https://api.adorable.io/avatars/285/abott@adorable.png',
+      about: 'Digital transformation company ...',
+    },
+  },
+  jobSkills: [
+    {
+      skill: {
+        name: 'HTML',
+      },
+      rating: 3,
+    },
+    {
+      skill: {
+        name: 'CSS',
+      },
+      rating: 3,
+    },
+    {
+      skill: {
+        name: 'JS',
+      },
+      rating: 3,
+    },
+    {
+      skill: {
+        name: 'React',
+      },
+      rating: 4,
+    },
+  ],
+  jobRequirements: [
+    {
+      name: 'Played with HTML, CSS, JS before',
+    },
+    {
+      name: 'Knows his/her ways with colors',
+    },
+    {
+      name: '99+ years experience would be nice',
+    },
+  ],
+  jobBenefits: [
+    {
+      name: 'Cool teammates',
+    },
+    {
+      name: 'Open space, open minded',
+    },
+    {
+      name: 'We have a ping-pong table',
+    },
+  ],
+};

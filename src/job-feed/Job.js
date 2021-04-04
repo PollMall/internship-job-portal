@@ -22,7 +22,7 @@ function Job({ job }) {
           {job.description}
         </Typography>
         <Typography variant="caption" display="block" color="textSecondary">
-          {`Last updated on: ${new Date(job.updatedAt).toLocaleDateString()}`}
+          {`Last updated on: ${new Date(job.updatedAt * 1000).toLocaleDateString('en-US')}`}
         </Typography>
       </CardContent>
     </Card>
