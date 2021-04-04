@@ -1,12 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  progress: {
-    display: 'block',
-    margin: '0 auto',
-    transform: 'scale(3)',
-  },
-
   pageTitle: {
     textAlign: 'center',
     margin: 16,

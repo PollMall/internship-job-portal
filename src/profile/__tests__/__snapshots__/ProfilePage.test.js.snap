@@ -1,14 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdminPage tests should match snapshot 1`] = `
+exports[`ProfilePage tests should match snapshot 1`] = `
 <div>
-  <h4
-    class="MuiTypography-root makeStyles-pageTitle-1 MuiTypography-h4"
-  >
-    List of users
-  </h4>
   <div
-    class="MuiCircularProgress-root makeStyles-progress-9 MuiCircularProgress-indeterminate"
+    class="MuiCircularProgress-root makeStyles-progress-1 MuiCircularProgress-indeterminate"
     data-testid="info-loading"
     role="progressbar"
     style="width: 40px; height: 40px;"

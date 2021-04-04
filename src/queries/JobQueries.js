@@ -54,3 +54,45 @@ query($id: Int!) {
   }
 }
 `;
+
+export const CREATE_JOB_APPLICATION = gql`
+mutation($userId: Int!, $jobId: Int!) {
+  createUserJobApplication(userId: $userId, jobId: $jobId) {
+    id,
+    job{
+      id
+      name
+      description
+    }
+    user {
+      id
+      username
+      firstName
+      lastName
+    }
+    isAccepted
+    updatedAt
+  }
+}
+`;
+
+export const GET_JOB_APPLICATIONS = gql`
+query{
+  userJobApplications{
+    id,
+    job{
+      id
+      name
+      description
+    }
+    user {
+      id
+      username
+      firstName
+      lastName
+    }
+    isAccepted
+    updatedAt
+  }
+}
+`;
