@@ -46,6 +46,7 @@ mutation(
   $lastName: String
   $password: String
   $userRoleId: Int
+  $contactInfoId: Int
 ) {
   updateUser(
     id: $id
@@ -54,16 +55,49 @@ mutation(
     lastName: $lastName
     password: $password
     userRoleId: $userRoleId
+    contactInfoId: $contactInfoId
   ) {
     id
     username
     firstName
     lastName
     password
-    userRole {
+    contactInfo {
       id
-      name
+      email
+      phone
+      city
+      country {
+        id
+        name
+      }
+      website
+      avatarUrl
+      about
     }
+    userEducations {
+      id
+      institution
+      description
+      startDate
+      endDate
+    }
+    userWorkExperiences {
+      id
+      institution
+      description
+      startDate
+      endDate
+    }
+    userSkills {
+      id
+      skill {
+        id
+        name
+      }
+      rating
+    }
+    updatedAt
   }
 }
 `;
@@ -73,6 +107,54 @@ query{
   userRoles{
     id,
     name
+  }
+}
+`;
+
+export const GET_USER = gql`
+query($id: Int!) {
+  user(id: $id) {
+    id
+    username
+    firstName
+    lastName
+    password
+    contactInfo {
+      id
+      email
+      phone
+      city
+      country {
+        id
+        name
+      }
+      website
+      avatarUrl
+      about
+    }
+    userEducations {
+      id
+      institution
+      description
+      startDate
+      endDate
+    }
+    userWorkExperiences {
+      id
+      institution
+      description
+      startDate
+      endDate
+    }
+    userSkills {
+      id
+      skill {
+        id
+        name
+      }
+      rating
+    }
+    updatedAt
   }
 }
 `;
