@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Paper } from '@material-ui/core';
 import { useMutation } from '@apollo/client';
 import WorkExperienceEdit from './WorkExperienceEdit';
 import NewWorkExperience from './NewWorkExperience';
 import useStyles from '../useStyles';
-import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 import { DELETE_USER_WORK_EXPERIENCE, UPDATE_USER_WORK_EXPERIENCE } from '../../queries/WorkExperienceQueries';
 
-function WorkExperiencesEdit() {
-  const { state, dispatch } = useContext(UserProfileContext);
+function WorkExperiencesEdit({ user, dispatch }) {
   const [deleteUserWorkExperienceCall] = useMutation(DELETE_USER_WORK_EXPERIENCE);
   const [updateUserWorkExperienceCall] = useMutation(UPDATE_USER_WORK_EXPERIENCE);
   const classes = useStyles();
@@ -23,7 +21,7 @@ function WorkExperiencesEdit() {
       await deleteUserWorkExperienceCall({ variables: { id } });
       dispatch({
         type: userProfileAction.UPDATE_WORK_EXPERIENCES,
-        payload: state.user?.userWorkExperiences.filter((we) => we.id !== id),
+        payload: user?.userWorkExperiences.filter((we) => we.id !== id),
       });
     } catch (ex) {
       console.error(ex);
@@ -34,12 +32,12 @@ function WorkExperiencesEdit() {
     try {
       const { data } = await updateUserWorkExperienceCall({
         variables:
-        { ...workExperience, userId: state.user?.id },
+        { ...workExperience, userId: user?.id },
       });
       dispatch({
         type: userProfileAction.UPDATE_WORK_EXPERIENCES,
         payload:
-          Array.from(state.user?.userWorkExperiences, (we) => (
+          Array.from(user?.userWorkExperiences, (we) => (
             we.id === workExperience.id ? { ...data.updateUserWorkExperience } : we
           )),
       });
@@ -50,13 +48,13 @@ function WorkExperiencesEdit() {
 
   return (
     <>
-      {state.user?.userWorkExperiences?.map((we) => (
+      {user?.userWorkExperiences?.map((we) => (
         <Paper key={we.id} className={classes.subsection}>
           <WorkExperienceEdit workExperience={we} onDelete={onDelete} onUpdate={onUpdate} />
         </Paper>
       ))}
       <Paper className={classes.subsection}>
-        <NewWorkExperience userId={state.user?.id} dispatch={dispatch} />
+        <NewWorkExperience userId={user?.id} dispatch={dispatch} />
       </Paper>
       <Button variant="outlined" onClick={onCancel}>cancel</Button>
     </>

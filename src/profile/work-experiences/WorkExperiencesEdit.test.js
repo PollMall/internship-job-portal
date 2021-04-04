@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import WorkExperiencesEdit from './WorkExperiencesEdit';
 import { render } from '../../setupTests';
 import { user } from '../../res/mockData';
-import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 
 jest.mock('@apollo/client', () => ({
@@ -25,17 +24,12 @@ jest.mock('@apollo/client', () => ({
 }));
 
 describe('WorkExperiencesEdit tests', () => {
-  const state = {
-    user,
-  };
   const dispatch = jest.fn().mockImplementation();
   const section = 'workExperiencesEdit';
 
   it('should cancel edit mode', () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <WorkExperiencesEdit />
-      </UserProfileContext.Provider>,
+      <WorkExperiencesEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getByText(/cancel/i));
@@ -47,9 +41,7 @@ describe('WorkExperiencesEdit tests', () => {
 
   it('should delete work experience', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <WorkExperiencesEdit />
-      </UserProfileContext.Provider>,
+      <WorkExperiencesEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getAllByText(/delete/i)[0]);
@@ -61,9 +53,7 @@ describe('WorkExperiencesEdit tests', () => {
 
   it('should update education', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <WorkExperiencesEdit />
-      </UserProfileContext.Provider>,
+      <WorkExperiencesEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.type(screen.getAllByLabelText(/institution/i)[0], 'a');

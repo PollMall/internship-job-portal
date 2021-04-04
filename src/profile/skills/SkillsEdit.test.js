@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SkillsEdit from './SkillsEdit';
 import { render } from '../../setupTests';
-import { UserProfileContext } from '../UserProfileProvider';
 import { user } from '../../res/mockData';
 import { userProfileAction } from '../useUserProfile';
 
@@ -40,17 +39,12 @@ jest.mock('@apollo/client', () => ({
 }));
 
 describe('SkillsEdit tests', () => {
-  const state = {
-    user,
-  };
   const dispatch = jest.fn().mockImplementation();
   const section = 'skillsEdit';
 
   it('should delete skill', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <SkillsEdit />
-      </UserProfileContext.Provider>,
+      <SkillsEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getAllByTestId('skill-delete-icon')[0]);
@@ -64,9 +58,7 @@ describe('SkillsEdit tests', () => {
 
   it('should cancel edit mode', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <SkillsEdit />
-      </UserProfileContext.Provider>,
+      <SkillsEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getByText('cancel'));
@@ -80,9 +72,7 @@ describe('SkillsEdit tests', () => {
 
   it('should update skill', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <SkillsEdit />
-      </UserProfileContext.Provider>,
+      <SkillsEdit user={user} dispatch={dispatch} />,
     );
 
     const skillRating = screen.getAllByTestId('skill-rating')[0];

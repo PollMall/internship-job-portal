@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import EducationsEdit from './EducationsEdit';
 import { render } from '../../setupTests';
 import { user } from '../../res/mockData';
-import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 
 jest.mock('@apollo/client', () => ({
@@ -25,17 +24,12 @@ jest.mock('@apollo/client', () => ({
 }));
 
 describe('EducationsEdit tests', () => {
-  const state = {
-    user,
-  };
   const dispatch = jest.fn().mockImplementation();
   const section = 'educationsEdit';
 
   it('should cancel edit mode', () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <EducationsEdit />
-      </UserProfileContext.Provider>,
+      <EducationsEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getByText(/cancel/i));
@@ -47,9 +41,7 @@ describe('EducationsEdit tests', () => {
 
   it('should delete education', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <EducationsEdit />
-      </UserProfileContext.Provider>,
+      <EducationsEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getAllByText(/delete/i)[0]);
@@ -63,9 +55,7 @@ describe('EducationsEdit tests', () => {
 
   it('should update education', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <EducationsEdit />
-      </UserProfileContext.Provider>,
+      <EducationsEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.type(screen.getAllByLabelText(/institution/i)[0], 'a');

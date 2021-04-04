@@ -20,7 +20,7 @@ function BasicInfo() {
       />
       {state.basicInfoEdit
         ? (
-          <BasicInfoEdit />
+          <BasicInfoEdit user={state.user} dispatch={dispatch} />
         )
         : (
           <BasicInfoPreview user={state.user} dispatch={dispatch} />

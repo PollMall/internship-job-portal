@@ -2,7 +2,6 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ContactInfoEdit from './ContactInfoEdit';
-import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 import { render } from '../../setupTests';
 import { user } from '../../res/mockData';
@@ -39,17 +38,12 @@ jest.mock('@apollo/client', () => ({
 }));
 
 describe('ContactInfoForm tests', () => {
-  const state = {
-    user,
-  };
   const dispatch = jest.fn().mockImplementation();
   const section = 'contactInfoEdit';
 
   it('should cancel form', () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <ContactInfoEdit />
-      </UserProfileContext.Provider>,
+      <ContactInfoEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getByText(/cancel/i));
@@ -58,9 +52,7 @@ describe('ContactInfoForm tests', () => {
 
   it('should create contact info', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <ContactInfoEdit />
-      </UserProfileContext.Provider>,
+      <ContactInfoEdit user={user} dispatch={dispatch} />,
     );
 
     userEvent.type(screen.getByLabelText(/email/i), user.contactInfo.email);
@@ -77,9 +69,7 @@ describe('ContactInfoForm tests', () => {
 
   it('should update contact info', async () => {
     render(
-      <UserProfileContext.Provider value={{ state: { user: {} }, dispatch }}>
-        <ContactInfoEdit />
-      </UserProfileContext.Provider>,
+      <ContactInfoEdit user={{}} dispatch={dispatch} />,
     );
 
     userEvent.type(screen.getByLabelText(/email/i), user.contactInfo.email);
@@ -96,9 +86,7 @@ describe('ContactInfoForm tests', () => {
 
   it('should throw error', async () => {
     render(
-      <UserProfileContext.Provider value={{ state: { user: {} }, dispatch }}>
-        <ContactInfoEdit />
-      </UserProfileContext.Provider>,
+      <ContactInfoEdit user={{}} dispatch={dispatch} />,
     );
 
     userEvent.click(screen.getByText(/save/i));

@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../queries/UserQueries';
 import { UPDATE_CONTACT_INFO } from '../../queries/ContactInfoQueries';
-import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 import BasicInfoForm from './BasicInfoForm';
 
-function BasicInfoEdit() {
+function BasicInfoEdit({ user: actualUser, dispatch }) {
   const [updateUserCall] = useMutation(UPDATE_USER);
   const [updateContactInfoCall] = useMutation(UPDATE_CONTACT_INFO);
-  const { state, dispatch } = useContext(UserProfileContext);
 
   const onSave = React.useCallback(async (user) => {
     try {
@@ -36,7 +34,7 @@ function BasicInfoEdit() {
   }, []);
 
   return (
-    <BasicInfoForm user={state.user} onSave={onSave} onCancel={onCancel} />
+    <BasicInfoForm user={actualUser} onSave={onSave} onCancel={onCancel} />
   );
 }
 

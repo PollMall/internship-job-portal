@@ -17,7 +17,7 @@ function WorkExperiences() {
       <Subtitle text="work experiences" section="workExperiencesEdit" dispatch={dispatch} />
       { state.workExperiencesEdit
         ? (
-          <WorkExperiencesEdit />
+          <WorkExperiencesEdit user={state.user} dispatch={dispatch} />
         )
         : (
           <WorkExperiencesPreview workExperiences={state.user?.userWorkExperiences} />

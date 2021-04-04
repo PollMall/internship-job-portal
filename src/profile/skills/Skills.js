@@ -17,7 +17,7 @@ function Skills() {
       <Subtitle text="skills" section="skillsEdit" dispatch={dispatch} />
       {state.skillsEdit
         ? (
-          <SkillsEdit />
+          <SkillsEdit user={state.user} dispatch={dispatch} />
         )
         : (
           <SkillsPreview skills={state.user?.userSkills} />

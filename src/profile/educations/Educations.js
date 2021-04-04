@@ -17,7 +17,7 @@ function Educations() {
       <Subtitle text="educations" section="educationsEdit" dispatch={dispatch} />
       { state.educationsEdit
         ? (
-          <EducationsEdit />
+          <EducationsEdit user={state.user} dispatch={dispatch} />
         )
         : (
           <EducationsPreview educations={state.user?.userEducations} />

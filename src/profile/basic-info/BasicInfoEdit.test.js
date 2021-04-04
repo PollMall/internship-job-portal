@@ -2,7 +2,6 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BasicInfoEdit from './BasicInfoEdit';
-import { UserProfileContext } from '../UserProfileProvider';
 import { userProfileAction } from '../useUserProfile';
 import { render } from '../../setupTests';
 import { user } from '../../res/mockData';
@@ -26,10 +25,6 @@ jest.mock('@apollo/client', () => ({
 }));
 
 describe('BasicInfoEdit tests', () => {
-  const state = {
-    user,
-    basicInfoEdit: true,
-  };
   const dispatch = jest.fn().mockImplementation();
   const section = 'basicInfoEdit';
   const firstName = 'a';
@@ -39,9 +34,7 @@ describe('BasicInfoEdit tests', () => {
 
   it('should cancel form', () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <BasicInfoEdit />
-      </UserProfileContext.Provider>,
+      <BasicInfoEdit user={user} dispatch={dispatch} />,
     );
 
     const cancel = screen.getByText(/cancel/i);
@@ -51,9 +44,7 @@ describe('BasicInfoEdit tests', () => {
 
   it('should save form', async () => {
     render(
-      <UserProfileContext.Provider value={{ state, dispatch }}>
-        <BasicInfoEdit />
-      </UserProfileContext.Provider>,
+      <BasicInfoEdit user={user} dispatch={dispatch} />,
     );
 
     const save = screen.getByText(/save/i);
@@ -74,9 +65,7 @@ describe('BasicInfoEdit tests', () => {
 
   it('should throw error', async () => {
     render(
-      <UserProfileContext.Provider value={{ state: { user: undefined }, dispatch }}>
-        <BasicInfoEdit />
-      </UserProfileContext.Provider>,
+      <BasicInfoEdit dispatch={dispatch} />,
     );
 
     const save = screen.getByText(/save/i);

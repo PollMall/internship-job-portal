@@ -17,7 +17,7 @@ function ContactInfo() {
       <Subtitle text="contact info" section="contactInfoEdit" dispatch={dispatch} />
       {state.contactInfoEdit
         ? (
-          <ContactInfoEdit />
+          <ContactInfoEdit user={state.user} dispatch={dispatch} />
         )
         : (
           <ContactInfoPreview contactInfo={state.user?.contactInfo} />
