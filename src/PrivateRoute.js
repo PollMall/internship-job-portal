@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { UserContext } from './UserProvider';
-import Unauthorized from './Unauthorized';
+import PageNotFound from './404page/PageNotFound';
 
 function RoleRoute({
   component: Component, user, roles, ...rest
@@ -12,7 +12,7 @@ function RoleRoute({
     <Route
       {...rest}
       render={(props) => (
-        hasRequiredRole(user?.userRole?.name) ? <Component {...props} /> : <Unauthorized />)}
+        hasRequiredRole(user?.userRole?.name) ? <Component {...props} /> : <PageNotFound />)}
     />
   );
 }

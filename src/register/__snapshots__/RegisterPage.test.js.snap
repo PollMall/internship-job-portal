@@ -18,7 +18,7 @@ exports[`RegisterPage test should match snapshot 1`] = `
         class="MuiFormControl-root MuiTextField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
           data-shrink="false"
           for="username"
           id="username-label"
@@ -26,17 +26,17 @@ exports[`RegisterPage test should match snapshot 1`] = `
           Username
           <span
             aria-hidden="true"
-            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
           >
              
             *
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
         >
           <input
-            aria-invalid="true"
+            aria-invalid="false"
             class="MuiInputBase-input MuiInput-input"
             id="username"
             name="username"
@@ -51,7 +51,7 @@ exports[`RegisterPage test should match snapshot 1`] = `
         class="MuiFormControl-root MuiTextField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
           data-shrink="false"
           for="firstname"
           id="firstname-label"
@@ -59,17 +59,17 @@ exports[`RegisterPage test should match snapshot 1`] = `
           First Name
           <span
             aria-hidden="true"
-            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
           >
              
             *
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
         >
           <input
-            aria-invalid="true"
+            aria-invalid="false"
             class="MuiInputBase-input MuiInput-input"
             id="firstname"
             name="firstName"
@@ -84,7 +84,7 @@ exports[`RegisterPage test should match snapshot 1`] = `
         class="MuiFormControl-root MuiTextField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
           data-shrink="false"
           for="lastname"
           id="lastname-label"
@@ -92,17 +92,17 @@ exports[`RegisterPage test should match snapshot 1`] = `
           Last Name
           <span
             aria-hidden="true"
-            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
           >
              
             *
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
         >
           <input
-            aria-invalid="true"
+            aria-invalid="false"
             class="MuiInputBase-input MuiInput-input"
             id="lastname"
             name="lastName"
@@ -117,7 +117,7 @@ exports[`RegisterPage test should match snapshot 1`] = `
         class="MuiFormControl-root MuiTextField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-error Mui-error Mui-required Mui-required"
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
           data-shrink="false"
           for="password"
           id="password-label"
@@ -125,17 +125,17 @@ exports[`RegisterPage test should match snapshot 1`] = `
           Password
           <span
             aria-hidden="true"
-            class="MuiFormLabel-asterisk MuiInputLabel-asterisk Mui-error Mui-error"
+            class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
           >
              
             *
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
         >
           <input
-            aria-invalid="true"
+            aria-invalid="false"
             class="MuiInputBase-input MuiInput-input"
             id="password"
             name="password"

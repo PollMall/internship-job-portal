@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Button, Snackbar, TextField, Backdrop, CircularProgress,
@@ -28,10 +28,10 @@ function LoginForm() {
   const history = useHistory();
   const { dispatch } = useContext(UserContext);
   const classes = useStyles();
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [valid, setValid] = React.useState(false);
-  const [user] = React.useState();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [valid, setValid] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [getUsers, {
     error, data, called, loading,
   }] = useLazyQuery(GET_USERS, { fetchPolicy: 'network-only' });
@@ -46,6 +46,8 @@ function LoginForm() {
       if (foundUser) {
         dispatch({ type: userAction.LOGIN, payload: foundUser });
         history.push('/');
+      } else {
+        setShowInfo(true);
       }
     }
   }, [data]);
@@ -83,7 +85,7 @@ function LoginForm() {
         <Backdrop open={loading} className={classes.backdrop}>
           <CircularProgress color="primary" />
         </Backdrop>
-        <Snackbar open={called && !user && !error} data-testid="login--info-alert">
+        <Snackbar open={showInfo} data-testid="login--info-alert">
           <Alert severity="info">
             You don&apos;t have an account!
           </Alert>

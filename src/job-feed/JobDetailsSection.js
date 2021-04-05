@@ -8,10 +8,11 @@ function JobDetailsSection({ fields }) {
     <Card>
       <CardContent>
         {fields?.map((f) => (
-          <>
+          <div key={f.id}>
             <Typography variant="h6">{f.title}</Typography>
-            { f.data?.map((text) => (<Typography variant="body2" component={f.component}>{text}</Typography>))}
-          </>
+            { f.data?.map((d) => (
+              <Typography key={d.id} variant="body2" component={f.component}>{d.field}</Typography>))}
+          </div>
         ))}
       </CardContent>
     </Card>
