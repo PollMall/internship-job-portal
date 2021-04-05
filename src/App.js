@@ -25,8 +25,8 @@ function App() {
   return (
     <ApolloProvider client={apolloClient}>
       <UserProvider>
-        <NavBar />
         <Router>
+          <NavBar />
           <Switch>
             <PrivateRoute component={Home} path="/home" to="/login" exact />
             <PrivateRoute component={JobFeedPage} path="/jobs" to="/login" exact />
@@ -34,11 +34,11 @@ function App() {
             <PrivateRoute component={AdminPage} path="/admin" to="/login" exact roles={['sys_admin']} />
             <PrivateRoute component={ProfilePage} path="/profile" to="/login" exact roles={['user']} />
             <RedirectLoggedInRoute component={LandingPage} path="/login" to="/" exact />
-            <Route path="/register" component={RegisterPage} exact />
+            <RedirectLoggedInRoute component={RegisterPage} path="/register" to="/" exact />
             <Route path="/" exact>
               <Redirect to="/home" />
             </Route>
-            <Route component={PageNotFound} />
+            <PrivateRoute component={PageNotFound} to="/login" />
           </Switch>
         </Router>
       </UserProvider>
