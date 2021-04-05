@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button, TextField, Backdrop, CircularProgress, Snackbar,
 } from '@material-ui/core';
@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 function RegisterForm() {
   const classes = useStyles();
-  const [username, setUsername] = React.useState('');
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [valid, setValid] = React.useState(false);
+  const [username, setUsername] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [valid, setValid] = useState(false);
   const [register, {
     error, loading, data, called,
   }] = useMutation(CREATE_USER);
@@ -35,11 +35,11 @@ function RegisterForm() {
   }, [username, firstName, lastName, password]);
 
   React.useEffect(() => {
-    if (!error) {
-      setUsername('');
-      setFirstName('');
-      setLastName('');
-      setPassword('');
+    if (data) {
+      setUsername(null);
+      setFirstName(null);
+      setLastName(null);
+      setPassword(null);
     }
   }, [data]);
 
@@ -56,41 +56,41 @@ function RegisterForm() {
       <p>Please provide your personal information</p>
       <form className={classes.root}>
         <TextField
-          value={username}
+          value={username || ''}
           label="Username"
           name="username"
           id="username"
-          error={!username}
+          error={username === ''}
           required
           onChange={(e) => setUsername(e.target.value)}
         />
         <br />
         <TextField
-          value={firstName}
+          value={firstName || ''}
           label="First Name"
           name="firstName"
           id="firstname"
-          error={!firstName}
+          error={firstName === ''}
           required
           onChange={(e) => setFirstName(e.target.value)}
         />
         <br />
         <TextField
-          value={lastName}
+          value={lastName || ''}
           label="Last Name"
           name="lastName"
           id="lastname"
-          error={!lastName}
+          error={lastName === ''}
           required
           onChange={(e) => setLastName(e.target.value)}
         />
         <br />
         <TextField
-          value={password}
+          value={password || ''}
           label="Password"
           name="password"
           id="password"
-          error={!password}
+          error={password === ''}
           required
           type="password"
           onChange={(e) => setPassword(e.target.value)}
