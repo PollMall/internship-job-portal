@@ -24,7 +24,8 @@ const useStyles = makeStyles({
   },
 
   jobCard: {
-    minWidth: 275,
+    maxWidth: 300,
+    flexGrow: 1,
     margin: 12,
     '&:hover': {
       backgroundColor: '#f2f4f7',
