@@ -52,7 +52,7 @@ function JobDetails({ job }) {
           </div>
 
           <div className={classes.content}>
-            {fields.map((f) => <JobDetailsSection fields={f} />)}
+            {fields.map((f) => <JobDetailsSection key={f.id} fields={f.fields} />)}
           </div>
         </CardContent>
         <CardActions>
